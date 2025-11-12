@@ -1,0 +1,43 @@
+# 命名空间
+server:
+  servlet:
+    context-path: /console
+# spring配置
+spring:
+  profiles:
+    active: dev
+  application:
+    name: Ray Console
+  servlet:
+    multipart:
+      # 请求数据大小
+      max-request-size: 100MB
+      # 上传文件大小
+      max-file-size: 100MB
+  # 时间正反序列化格式
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: RAY-TOKEN
+  # token有效期，单位s 默认1天, -1代表永不过期
+  timeout: 86400
+  # 是否允许同一账号并发登录(为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: false
+  # 在多人登录同一账号时(为true共用一个token, 为false每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 开启日志
+  is-log: true
+  # 是否写入到Header中
+  is-write-header: true
+# 系统配置
+ray:
+  framework:
+    sdk:
+      auth:
+        exclude-paths:
+          - /v1/auth/v1/login-vc
+          - /v1/auth/v1/login

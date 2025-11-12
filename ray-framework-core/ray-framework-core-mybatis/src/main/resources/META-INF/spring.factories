@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cc.xuepeng.ray.framework.core.mybatis.config.MybatisPlusConfiguration
