@@ -5,20 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.xuepeng</groupId>
-        <artifactId>ray-framework</artifactId>
+        <artifactId>ray-framework-module-system</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ray-framework-module</artifactId>
-    <packaging>pom</packaging>
-    <name>Ray Framework Module</name>
-
-    <!-- 子模块管理 -->
-    <modules>
-        <module>ray-framework-module-log</module>
-        <module>ray-framework-module-auth</module>
-        <module>ray-framework-module-system</module>
-    </modules>
+    <artifactId>ray-framework-module-system-repository</artifactId>
+    <name>Ray Framework Module System Repository</name>
 
     <!-- 属性管理 -->
     <properties>
@@ -26,5 +18,15 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- 依赖管理 -->
+    <dependencies>
+        <!-- RayFramework -->
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-core-mybatis</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -5,20 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cc.xuepeng</groupId>
-        <artifactId>ray-framework</artifactId>
+        <artifactId>ray-framework-module-system</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ray-framework-module</artifactId>
-    <packaging>pom</packaging>
-    <name>Ray Framework Module</name>
-
-    <!-- 子模块管理 -->
-    <modules>
-        <module>ray-framework-module-log</module>
-        <module>ray-framework-module-auth</module>
-        <module>ray-framework-module-system</module>
-    </modules>
+    <artifactId>ray-framework-module-system-domain</artifactId>
+    <name>Ray Framework Module System Domain</name>
 
     <!-- 属性管理 -->
     <properties>

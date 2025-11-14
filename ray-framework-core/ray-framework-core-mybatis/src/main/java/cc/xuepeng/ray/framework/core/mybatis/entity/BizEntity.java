@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.core.mybatis.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.*;
 
@@ -34,6 +36,7 @@ public class BizEntity extends BaseEntity {
      * 创建时间
      * 数据库字段：create_time，timestamp
      */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
@@ -46,6 +49,7 @@ public class BizEntity extends BaseEntity {
      * 修改时间
      * 数据库字段：modify_time，timestamp
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime modifyTime;
 
 }

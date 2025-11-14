@@ -9,7 +9,7 @@ logging:
   config: classpath:log4j-dev.xml
 # spring配置
 spring:
-  # mysql配置
+  # MySQL配置
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/ray-framework?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
@@ -24,7 +24,7 @@ spring:
       max-lifetime: 1800000 #控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000，即30分钟
       connection-timeout: 10000 #数据库连接超时时间,默认30秒，即30000
   data:
-    # redis配置
+    # Redis配置
     redis:
       host: 127.0.0.1
       port: 6379
@@ -37,7 +37,17 @@ spring:
           max-idle: 10
       timeout: 5000
       database: 0
+# RocketMQ配置
 rocketmq:
   name-server: 127.0.0.1:9876
   producer:
     group: producer-group
+# SQL分析与打印
+decorator:
+  datasource:
+    p6spy:
+      # 日志格式
+      log-format: "\ntime:%(executionTime) || sql:%(sql)\n"
+      # 自定义日志类
+      logging: custom
+      custom-appender-class: com.example.testinit.config.StdoutLogger

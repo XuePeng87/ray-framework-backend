@@ -38,6 +38,7 @@
         <mybatis-plus.version>3.5.13</mybatis-plus.version>
         <mysql.version>9.4.0</mysql.version>
         <nashorn-core.version>15.7</nashorn-core.version>
+        <p6spy.version>1.12.0</p6spy.version>
         <reflectasm.version>1.11.9</reflectasm.version>
         <rocketmq.version>2.3.0</rocketmq.version>
         <sa-token.version>1.44.0</sa-token.version>
@@ -124,6 +125,12 @@
                 <groupId>org.openjdk.nashorn</groupId>
                 <artifactId>nashorn-core</artifactId>
                 <version>${nashorn-core.version}</version>
+            </dependency>
+            <!-- P6Spy -->
+            <dependency>
+                <groupId>com.github.gavlyukovskiy</groupId>
+                <artifactId>p6spy-spring-boot-starter</artifactId>
+                <version>1.12.0</version>
             </dependency>
             <!-- ReflectASM -->
             <dependency>
