@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
     <name>Ray Framework Module System</name>
     <modules>
+        <module>ray-framework-module-system-domain</module>
         <module>ray-framework-module-system-repository</module>
         <module>ray-framework-module-system-service</module>
-        <module>ray-framework-module-system-domain</module>
         <module>ray-framework-module-system-api</module>
     </modules>
 

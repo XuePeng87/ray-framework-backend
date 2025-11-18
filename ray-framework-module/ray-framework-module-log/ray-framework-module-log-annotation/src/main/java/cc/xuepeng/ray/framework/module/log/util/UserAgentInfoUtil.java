@@ -1,8 +1,8 @@
 package cc.xuepeng.ray.framework.module.log.util;
 
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
-import cc.xuepeng.ray.framework.module.log.domain.dto.SysAuthLogDto;
-import cc.xuepeng.ray.framework.module.log.domain.dto.SysOperateLogDto;
+import cc.xuepeng.ray.framework.module.log.dto.SysAuthLogDto;
+import cc.xuepeng.ray.framework.module.log.dto.SysOperateLogDto;
 import cn.hutool.http.useragent.UserAgent;
 import jakarta.servlet.http.HttpServletRequest;
 

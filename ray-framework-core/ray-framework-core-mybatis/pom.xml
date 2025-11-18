@@ -36,11 +36,6 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-jsqlparser</artifactId>
         </dependency>
-        <!-- P6Spy -->
-        <dependency>
-            <groupId>com.github.gavlyukovskiy</groupId>
-            <artifactId>p6spy-spring-boot-starter</artifactId>
-        </dependency>
         <!-- SpringBoot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

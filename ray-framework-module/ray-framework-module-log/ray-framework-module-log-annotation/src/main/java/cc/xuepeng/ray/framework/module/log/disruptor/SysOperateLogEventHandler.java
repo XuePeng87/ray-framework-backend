@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.module.log.disruptor;
 
 import cc.xuepeng.ray.framework.core.rocketmq.client.RocketMQClient;
-import cc.xuepeng.ray.framework.module.log.domain.dto.SysOperateLogDto;
+import cc.xuepeng.ray.framework.module.log.dto.SysOperateLogDto;
 import com.lmax.disruptor.EventHandler;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

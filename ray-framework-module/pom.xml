@@ -18,6 +18,7 @@
         <module>ray-framework-module-log</module>
         <module>ray-framework-module-auth</module>
         <module>ray-framework-module-system</module>
+        <module>ray-framework-module-dict</module>
     </modules>
 
     <!-- 属性管理 -->

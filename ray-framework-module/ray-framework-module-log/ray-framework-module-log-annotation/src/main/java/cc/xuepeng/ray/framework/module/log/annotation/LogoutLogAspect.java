@@ -2,8 +2,8 @@ package cc.xuepeng.ray.framework.module.log.annotation;
 
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
 import cc.xuepeng.ray.framework.core.web.util.WebUtil;
-import cc.xuepeng.ray.framework.module.log.domain.dto.SysAuthLogDto;
-import cc.xuepeng.ray.framework.module.log.domain.enums.SysAuthLogTypeDto;
+import cc.xuepeng.ray.framework.module.log.dto.SysAuthLogDto;
+import cc.xuepeng.ray.framework.module.log.enums.SysAuthLogTypeDto;
 import cc.xuepeng.ray.framework.module.log.util.UserAgentInfoUtil;
 import cc.xuepeng.ray.framework.sdk.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.sdk.auth.service.IdentificationService;

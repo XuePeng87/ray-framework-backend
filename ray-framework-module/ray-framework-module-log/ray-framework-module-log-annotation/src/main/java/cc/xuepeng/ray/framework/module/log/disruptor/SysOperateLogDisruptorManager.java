@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.module.log.disruptor;
 
-import cc.xuepeng.ray.framework.module.log.domain.dto.SysOperateLogDto;
+import cc.xuepeng.ray.framework.module.log.dto.SysOperateLogDto;
 import cc.xuepeng.ray.framework.sdk.disruptor.GenericDisruptorManager;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
