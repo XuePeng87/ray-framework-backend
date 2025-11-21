@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.dict.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -13,8 +15,6 @@ import cc.xuepeng.ray.framework.module.dict.exception.SysDictItemDuplicateExcept
 import cc.xuepeng.ray.framework.module.dict.exception.SysDictItemNotFoundException;
 import cc.xuepeng.ray.framework.module.dict.repository.SysDictItemRepository;
 import cc.xuepeng.ray.framework.module.dict.service.SysDictItemService;
-import cc.xuepeng.ray.framework.sdk.auth.annotation.CreateUser;
-import cc.xuepeng.ray.framework.sdk.auth.annotation.ModifyUser;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

@@ -20,6 +20,9 @@
         <module>ray-framework-core-mybatis</module>
         <module>ray-framework-core-redis</module>
         <module>ray-framework-core-rocketmq</module>
+        <module>ray-framework-core-disruptor</module>
+        <module>ray-framework-core-auth</module>
+        <module>ray-framework-core-log</module>
     </modules>
 
     <!-- 属性管理 -->

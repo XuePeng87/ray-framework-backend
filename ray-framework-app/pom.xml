@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-module-log-api</artifactId>
+            <artifactId>ray-framework-facade-system</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- Spring Boot -->

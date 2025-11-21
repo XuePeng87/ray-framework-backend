@@ -21,7 +21,7 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <!-- RayFramework -->
+        <!-- Ray Framework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-module-dict-domain</artifactId>
@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>cc.xuepeng</groupId>
-            <artifactId>ray-framework-sdk-auth</artifactId>
+            <artifactId>ray-framework-core-auth</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

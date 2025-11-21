@@ -21,7 +21,7 @@
 
     <!-- 依赖管理 -->
     <dependencies>
-        <!-- RayFramework -->
+        <!-- Ray Framework -->
         <dependency>
             <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-core-mybatis</artifactId>

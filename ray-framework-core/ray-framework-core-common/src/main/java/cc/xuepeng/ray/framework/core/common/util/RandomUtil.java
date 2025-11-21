@@ -2,6 +2,7 @@ package cc.xuepeng.ray.framework.core.common.util;
 
 import cc.xuepeng.ray.framework.core.common.consts.PunctuationConst;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class RandomUtil {
      * @return 获取一个32位的UUID（去掉横线）
      */
     public static String get32UUID() {
-        return StringUtils.replace(getUUID(), PunctuationConst.HORIZONTAL_LINE, StringUtils.EMPTY);
+        return Strings.CI.replace(getUUID(), PunctuationConst.HORIZONTAL_LINE, StringUtils.EMPTY);
     }
 
     /**

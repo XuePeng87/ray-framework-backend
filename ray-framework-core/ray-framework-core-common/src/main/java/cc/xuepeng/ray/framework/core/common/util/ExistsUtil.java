@@ -2,6 +2,7 @@ package cc.xuepeng.ray.framework.core.common.util;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import java.io.Serializable;
 import java.util.List;
@@ -42,9 +43,9 @@ public class ExistsUtil {
             } else {
                 // 如果list中只有一行记录，且value相等，则认为是对某个数据进行修改，此时返回true
                 // 场景为修改时，如果list中的数据就是要修改的数据，则返回false，如果list中的数据不是要修改的数据，则返回true
-                final MethodAccess access = MethodAccess.get(l.get(0).getClass());
-                final String id = access.invoke(l.get(0), "get" + field).toString();
-                return StringUtils.isEmpty((CharSequence) v) || !StringUtils.equals(id, (CharSequence) v);
+                final MethodAccess access = MethodAccess.get(l.getFirst().getClass());
+                final String id = access.invoke(l.getFirst(), "get" + field).toString();
+                return StringUtils.isEmpty((CharSequence) v) || !Strings.CI.equals(id, (CharSequence) v);
             }
         });
     }

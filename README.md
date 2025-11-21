@@ -7,6 +7,13 @@
 |      | 50012  | 字典项已存在 | SysDictItemDuplicateException |      |
 |      | 50013  | 字典项不存在 | SysDictItemNotFoundException  |      |
 |      |        |              |                               |      |
+|      |        |              | SessionUserNotFoundException  |      |
+|      |        |              | CodecException                |      |
+|      |        |              | FileConvertException          |      |
+|      |        |              | FileParseException            |      |
+|      |        |              | FileUtilException             |      |
+|      |        |              | RocketMQSendFailedException   |      |
 |      |        |              |                               |      |
-|      |        |              |                               |      |
+|      |        |              | VerifyCodeExpiredException    |      |
+|      |        |              | VerifyCodeIncorrectException  |      |
 

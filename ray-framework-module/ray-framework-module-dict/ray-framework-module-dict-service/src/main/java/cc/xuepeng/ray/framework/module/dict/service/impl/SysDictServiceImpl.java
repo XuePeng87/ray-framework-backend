@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.dict.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -13,10 +15,9 @@ import cc.xuepeng.ray.framework.module.dict.exception.SysDictDuplicateException;
 import cc.xuepeng.ray.framework.module.dict.exception.SysDictNotFoundException;
 import cc.xuepeng.ray.framework.module.dict.repository.SysDictRepository;
 import cc.xuepeng.ray.framework.module.dict.service.SysDictService;
-import cc.xuepeng.ray.framework.sdk.auth.annotation.CreateUser;
-import cc.xuepeng.ray.framework.sdk.auth.annotation.ModifyUser;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
@@ -129,6 +130,30 @@ public class SysDictServiceImpl
     }
 
     /**
+     * 检查要保存的字段是否存在
+     *
+     * @param code        系统字典的编号
+     * @param fieldGetter 系统字典的字段获取器
+     * @param fieldValue  系统字典的字段值
+     * @return 是否已存在
+     */
+    private boolean checkFieldExisted(final String code,
+                                      final SFunction<SysDict, ?> fieldGetter,
+                                      final String fieldValue) {
+
+        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
+        final List<SysDict> sysDicts = super.list(
+                wrapper.lambda().eq(fieldGetter, fieldValue)
+        );
+
+        return ExistsUtil.exists(
+                sysDicts,
+                StringUtils.isBlank(code) ? StringUtils.EMPTY : code,
+                EntityConst.CODE
+        );
+    }
+
+    /**
      * 检测系统字典名称是否已存在
      *
      * @param code 编号
@@ -136,12 +161,7 @@ public class SysDictServiceImpl
      * @return 系统字典名称是否已存在
      */
     private boolean checkNameExisted(final String code, final String name) {
-        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
-        final List<SysDict> sysDicts = super.list(wrapper.lambda().eq(SysDict::getName, name));
-        return ExistsUtil.exists(
-                sysDicts,
-                StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
-        );
+        return checkFieldExisted(code, SysDict::getName, name);
     }
 
     /**
@@ -152,12 +172,7 @@ public class SysDictServiceImpl
      * @return 系统字典值是否已存在
      */
     private boolean checkValueExisted(final String code, final String value) {
-        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
-        final List<SysDict> sysDicts = super.list(wrapper.lambda().eq(SysDict::getValue, value));
-        return ExistsUtil.exists(
-                sysDicts,
-                StringUtils.isBlank(code) ? StringUtils.EMPTY : code, EntityConst.CODE
-        );
+        return checkFieldExisted(code, SysDict::getValue, value);
     }
 
     /**

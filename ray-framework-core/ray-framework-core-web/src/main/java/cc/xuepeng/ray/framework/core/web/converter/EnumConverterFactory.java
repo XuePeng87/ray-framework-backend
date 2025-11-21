@@ -1,7 +1,6 @@
 package cc.xuepeng.ray.framework.core.web.converter;
 
 import cc.xuepeng.ray.framework.core.common.domain.enums.BaseEnum;
-import jakarta.annotation.Nonnull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 

@@ -18,7 +18,6 @@
         <module>ray-framework-module-dict-domain</module>
         <module>ray-framework-module-dict-repository</module>
         <module>ray-framework-module-dict-service</module>
-        <module>ray-framework-module-dict-api</module>
     </modules>
 
     <!-- 属性管理 -->

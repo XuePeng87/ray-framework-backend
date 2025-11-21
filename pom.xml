@@ -16,6 +16,7 @@
         <module>ray-framework-sdk</module>
         <module>ray-framework-module</module>
         <module>ray-framework-app</module>
+        <module>ray-framework-facade</module>
     </modules>
 
     <!-- 属性管理 -->
@@ -42,6 +43,7 @@
         <reflectasm.version>1.11.9</reflectasm.version>
         <rocketmq.version>2.3.0</rocketmq.version>
         <sa-token.version>1.44.0</sa-token.version>
+        <sa-token-redis-template.version>1.44.0</sa-token-redis-template.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -154,6 +156,11 @@
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-redis-jackson</artifactId>
                 <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-template</artifactId>
+                <version>${sa-token-redis-template.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
