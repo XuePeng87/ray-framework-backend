@@ -20,6 +20,12 @@ import java.time.LocalDateTime;
 public class SysOperateLog extends BaseEntity {
 
     /**
+     * 租户编号
+     * 数据库字段：tenant_code,char(32)
+     */
+    private String tenantCode;
+
+    /**
      * 日志类型：1=访问日志；2=错误日志
      * 数据库字段：type,tinyint(2)
      */

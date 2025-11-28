@@ -11,7 +11,6 @@ import cc.xuepeng.ray.framework.core.web.util.WebUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -49,6 +48,7 @@ public class OperateLogAspect {
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
         final Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         final SysOperateLogDto sysOperateLogDto = new SysOperateLogDto();
+        final LocalDateTime startTime = LocalDateTime.now();
         Object result = null;
         try {
             // 获取本次请求的元数据
@@ -59,19 +59,20 @@ public class OperateLogAspect {
             setAnnotationInfo(sysOperateLogDto, method.getAnnotation(OperateLog.class));
             // 设置认证信息
             setAuthInfo(sysOperateLogDto);
-            // 保存封装信息到ThreadLocal中
+
             result = joinPoint.proceed();
             return result;
         } catch (Throwable e) {
             sysOperateLogDto.getDetail().setError(e.getMessage());
             sysOperateLogDto.setType(SysOperateLogType.ERROR);
-            log.error(sysOperateLogDto.toString(), e);
             throw e;
         } finally {
-            if (ObjectUtils.isNotEmpty(result)) {
+            if (result != null) {
                 sysOperateLogDto.getDetail().setResult(result.toString());
             }
+            sysOperateLogDto.setExeTime(exeTime(startTime));
             sysOperateLogDto.setType(SysOperateLogType.ACCESS);
+            log.info("OperateLogAspect -> {}", sysOperateLogDto);
             sysOperateLogDisruptorManager.publish(sysOperateLogDto);
         }
     }

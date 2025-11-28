@@ -4,7 +4,7 @@ import cc.xuepeng.ray.framework.core.mybatis.converter.EntityConverter;
 import cc.xuepeng.ray.framework.module.user.entity.SysUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import ray.framework.module.user.dto.SysUserDto;
+import cc.xuepeng.ray.framework.module.user.dto.SysUserDto;
 
 /**
  * 系统用户实体类转换接口

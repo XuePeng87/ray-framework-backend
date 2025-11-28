@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
  *
  * @author xuepeng
  */
-@Component
 @Slf4j
+@Component
 public class SaTokenServiceImpl implements IdentificationService {
 
     /**
@@ -42,6 +42,14 @@ public class SaTokenServiceImpl implements IdentificationService {
     @Override
     public boolean isLogin() {
         return StpUtil.isLogin();
+    }
+
+    /**
+     * @return 获取当前登录用户的访问令牌
+     */
+    @Override
+    public String getToken() {
+        return StpUtil.getTokenValue();
     }
 
     /**

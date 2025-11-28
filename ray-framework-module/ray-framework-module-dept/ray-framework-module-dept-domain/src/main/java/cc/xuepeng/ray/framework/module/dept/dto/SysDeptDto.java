@@ -21,6 +21,11 @@ import java.util.List;
 public class SysDeptDto extends BaseDto implements Composite {
 
     /**
+     * 租户编号
+     */
+    private String tenantCode;
+
+    /**
      * 父级编号
      */
     private String parentCode;

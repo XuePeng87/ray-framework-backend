@@ -12,6 +12,11 @@
     <artifactId>ray-framework-module-auth</artifactId>
     <packaging>pom</packaging>
     <name>Ray Framework Module Auth</name>
+    <modules>
+        <module>ray-framework-module-auth-service</module>
+        <module>ray-framework-module-auth-domain</module>
+        <module>ray-framework-module-auth-api</module>
+    </modules>
 
     <!-- 属性管理 -->
     <properties>

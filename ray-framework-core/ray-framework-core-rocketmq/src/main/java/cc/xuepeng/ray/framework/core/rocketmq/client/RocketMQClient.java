@@ -22,10 +22,10 @@ public class RocketMQClient {
     public <T> SendResult syncSend(String topic, T message) {
         try {
             SendResult result = rocketMQTemplate.syncSend(topic, MessageBuilder.withPayload(message).build());
-            log.info("【RocketMQ】同步发送成功，Topic={}, Msg={}", topic, message);
+            log.info("RocketMQ -> 同步发送成功，Topic={}, Msg={}", topic, message);
             return result;
         } catch (Exception e) {
-            log.error("【RocketMQ】同步发送失败，Topic={}, Msg={}", topic, message, e);
+            log.error("RocketMQ - >同步发送失败，Topic={}, Msg={}", topic, message, e);
             throw new RocketMQSendFailedException(e);
         }
     }

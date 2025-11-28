@@ -20,6 +20,12 @@ import java.time.LocalDateTime;
 public class SysAuthLog extends BaseEntity {
 
     /**
+     * 租户编号
+     * 数据库字段：tenant_code,char(32)
+     */
+    private String tenantCode;
+
+    /**
      * 日志类型：1=登录日志；2=登出日志
      * 数据库字段：type,tinyint(2)
      */

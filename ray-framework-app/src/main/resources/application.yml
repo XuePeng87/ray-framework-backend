@@ -36,8 +36,38 @@ sa-token:
 # 系统配置
 ray:
   framework:
-    sdk:
+    core:
+      redis:
+        # 关闭redis事务功能
+        transaction: false
       auth:
+        # 全部的API都需要登录认证，除了在exclude-paths中的API
+        include-path: /**
+        # 以下API无需登录认证
         exclude-paths:
           - /v1/auth/v1/login-vc
           - /v1/auth/v1/login
+      mybatis:
+        tenant:
+          # 开启租户插件
+          enable: true
+          # 租户字段名称
+          columnName: tenant_code
+          # 忽略租户隔离的表名
+          ignoresTables:
+            - sys_dict
+            - sys_dict_item
+            - sys_func
+            - sys_role
+            - sys_role_func_relation
+            - sys_role_user_relation
+    sdk:
+      verify-code:
+        # 验证码缓存过期时间
+        expiration: 2m
+        # 图片宽度
+        captchaImgWidth: 127
+        # 图片高度
+        captchaImgHeight: 40
+        # 验证码答案长度
+        captchaLength: 2

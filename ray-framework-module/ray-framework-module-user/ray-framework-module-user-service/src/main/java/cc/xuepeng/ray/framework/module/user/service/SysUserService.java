@@ -2,7 +2,7 @@ package cc.xuepeng.ray.framework.module.user.service;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ray.framework.module.user.dto.SysUserDto;
+import cc.xuepeng.ray.framework.module.user.dto.SysUserDto;
 
 import java.util.List;
 

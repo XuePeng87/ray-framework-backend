@@ -19,6 +19,6 @@ public class RedisProperty {
     /**
      * 是否开启Redis事务，默认关闭
      */
-    private Boolean transaction = Boolean.FALSE;
+    private Boolean transaction = false;
 
 }

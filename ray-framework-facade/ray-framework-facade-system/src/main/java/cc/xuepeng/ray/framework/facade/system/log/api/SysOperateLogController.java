@@ -9,6 +9,9 @@ import cc.xuepeng.ray.framework.core.web.controller.BaseController;
 import cc.xuepeng.ray.framework.facade.system.log.request.SysOperateLogRequest;
 import cc.xuepeng.ray.framework.facade.system.log.response.SysOperateLogResponse;
 import cc.xuepeng.ray.framework.facade.system.log.service.SysOperateLogFacade;
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -25,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/operate-logs")
 @Slf4j
 @Validated
-//@SaCheckLogin
+@SaCheckLogin
 public class SysOperateLogController extends BaseController {
 
     /**
@@ -36,7 +39,7 @@ public class SysOperateLogController extends BaseController {
      */
     @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "操作日志管理", remark = "分页查询操作日志", action = SysOperateLogAction.QUERY)
-//    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysOperateLogResponse>> pageByCondition(final SysOperateLogRequest sysOperateLogRequest) {
         final PageResponse<SysOperateLogResponse> result = sysOperateLogFacade.pageByCondition(sysOperateLogRequest);
         return DefaultResultFactory.success("分页查询操作日志列表", result);

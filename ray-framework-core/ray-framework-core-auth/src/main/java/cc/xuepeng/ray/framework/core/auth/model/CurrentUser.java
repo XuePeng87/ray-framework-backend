@@ -22,6 +22,11 @@ public class CurrentUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 租户编号
+     */
+    private String tenantCode;
+
+    /**
      * 编号
      */
     private String code;
@@ -44,6 +49,11 @@ public class CurrentUser implements Serializable {
      * 头像
      */
     private String avatar;
+
+    /**
+     * 系统租户
+     */
+    private CurrentUserTenant tenant;
 
     /**
      * 系统部门

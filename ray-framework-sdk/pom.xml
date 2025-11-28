@@ -16,7 +16,6 @@
     <!-- 子模块管理 -->
     <modules>
         <module>ray-framework-sdk-verifycode</module>
-        <module>ray-framework-sdk-disruptor</module>
     </modules>
 
     <!-- 属性管理 -->

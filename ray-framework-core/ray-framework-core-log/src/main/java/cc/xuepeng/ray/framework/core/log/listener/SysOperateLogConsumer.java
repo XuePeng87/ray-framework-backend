@@ -31,7 +31,7 @@ public class SysOperateLogConsumer implements RocketMQListener<SysOperateLogDto>
      */
     @Override
     public void onMessage(final SysOperateLogDto message) {
-        log.info("【RocketMQ】收到消息: {}", message);
+        log.info("RocketMQ -> 收到消息: {}", message);
         sysOperateLogService.create(message);
     }
 

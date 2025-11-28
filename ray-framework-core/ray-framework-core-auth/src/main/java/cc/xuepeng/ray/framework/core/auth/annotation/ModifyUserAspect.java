@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
  *
  * @author xuepeng
  */
-@Component
 @Aspect
+@Component
 public class ModifyUserAspect {
 
     /**

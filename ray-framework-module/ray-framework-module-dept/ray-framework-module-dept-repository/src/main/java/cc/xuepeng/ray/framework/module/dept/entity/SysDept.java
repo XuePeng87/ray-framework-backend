@@ -18,6 +18,12 @@ import lombok.*;
 public class SysDept extends BizEntity {
 
     /**
+     * 租户编号
+     * 数据库字段：tenant_code，char(32)
+     */
+    private String tenantCode;
+
+    /**
      * 父级编号
      * 数据库字段：parent_code，char(32)
      */

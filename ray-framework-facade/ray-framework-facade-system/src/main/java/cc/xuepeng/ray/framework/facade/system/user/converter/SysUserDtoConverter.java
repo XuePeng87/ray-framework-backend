@@ -5,7 +5,7 @@ import cc.xuepeng.ray.framework.facade.system.user.request.SysUserRequest;
 import cc.xuepeng.ray.framework.facade.system.user.response.SysUserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import ray.framework.module.user.dto.SysUserDto;
+import cc.xuepeng.ray.framework.module.user.dto.SysUserDto;
 
 /**
  * 系统用户数据传输类转换接口

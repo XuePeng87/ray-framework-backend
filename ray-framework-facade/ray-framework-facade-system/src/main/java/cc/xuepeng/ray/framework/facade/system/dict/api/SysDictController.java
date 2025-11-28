@@ -10,6 +10,7 @@ import cc.xuepeng.ray.framework.core.web.controller.BaseController;
 import cc.xuepeng.ray.framework.facade.system.dict.request.SysDictRequest;
 import cc.xuepeng.ray.framework.facade.system.dict.response.SysDictResponse;
 import cc.xuepeng.ray.framework.facade.system.dict.service.SysDictFacade;
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.annotation.SaMode;
 import jakarta.annotation.Resource;
@@ -28,7 +29,7 @@ import java.util.List;
 @RequestMapping("/v1/dicts")
 @Slf4j
 @Validated
-//@SaCheckLogin
+@SaCheckLogin
 public class SysDictController extends BaseController {
 
     /**
@@ -107,7 +108,7 @@ public class SysDictController extends BaseController {
     @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "分页查询字典",
             action = SysOperateLogAction.QUERY, persistent = false)
-//    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysDictResponse>> pageByCondition(final SysDictRequest sysDictRequest) {
         final PageResponse<SysDictResponse> result = sysDictFacade.pageByCondition(sysDictRequest);
         return DefaultResultFactory.success("分页查询字典列表", result);

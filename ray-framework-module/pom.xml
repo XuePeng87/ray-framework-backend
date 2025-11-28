@@ -15,12 +15,14 @@
 
     <!-- 子模块管理 -->
     <modules>
-        <module>ray-framework-module-auth</module>
         <module>ray-framework-module-dict</module>
         <module>ray-framework-module-user</module>
         <module>ray-framework-module-dept</module>
         <module>ray-framework-module-func</module>
         <module>ray-framework-module-role</module>
+        <module>ray-framework-module-auth</module>
+        <module>ray-framework-module-tenant</module>
+        <module>ray-framework-module-tenant/ray-framework-module-tenant-repository</module>
     </modules>
 
     <!-- 属性管理 -->

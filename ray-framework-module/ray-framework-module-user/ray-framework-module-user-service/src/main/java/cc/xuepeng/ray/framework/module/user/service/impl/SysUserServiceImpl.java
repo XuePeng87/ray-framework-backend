@@ -25,7 +25,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ray.framework.module.user.dto.SysUserDto;
+import cc.xuepeng.ray.framework.module.user.dto.SysUserDto;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@ spring:
   # MySQL配置
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://127.0.0.1:3306/ray-framework?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://127.0.0.1:3306/anov-server-system?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
     username: root
     password: Snow103082..
     hikari:

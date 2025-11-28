@@ -23,6 +23,11 @@ public interface IdentificationService {
     boolean isLogin();
 
     /**
+     * @return 获取当前登录用户的访问令牌
+     */
+    String getToken();
+
+    /**
      * @return 获取当前登录用户的编号
      */
     CurrentUser getCurrentUser();

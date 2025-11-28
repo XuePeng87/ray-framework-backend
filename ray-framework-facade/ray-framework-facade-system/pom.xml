@@ -49,6 +49,11 @@
         </dependency>
         <dependency>
             <groupId>cc.xuepeng</groupId>
+            <artifactId>ray-framework-module-tenant-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cc.xuepeng</groupId>
             <artifactId>ray-framework-core-log</artifactId>
             <version>${project.version}</version>
         </dependency>

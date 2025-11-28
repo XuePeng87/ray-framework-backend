@@ -15,7 +15,7 @@ import java.time.Duration;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@ConfigurationProperties(prefix = "ray.framework.verify-code")
+@ConfigurationProperties(prefix = "ray.framework.sdk.verify-code")
 public class VerifyCodeProperty {
 
     /**
@@ -34,7 +34,7 @@ public class VerifyCodeProperty {
     private Integer captchaImgHeight = 40;
 
     /**
-     * 验证码长度
+     * 验证码答案长度
      */
     private Integer captchaLength = 2;
 
