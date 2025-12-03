@@ -38,7 +38,7 @@ public class SysOperateLogDetailController extends BaseController {
      */
     @GetMapping("/v1/{logId}")
     @OperateLog(module = "系统管理", func = "操作日志管理", remark = "查询操作日志详情",
-            action = SysOperateLogAction.QUERY)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<SysOperateLogDetailResponse> findByLogId(@PathVariable("logId") final Long logId) {
         final SysOperateLogDetailResponse result = sysOperateLogFacade.findByLogId(logId);

@@ -38,7 +38,8 @@ public class SysOperateLogController extends BaseController {
      * @return 系统操作日志的响应对象集合
      */
     @GetMapping("/v1/page")
-    @OperateLog(module = "系统管理", func = "操作日志管理", remark = "分页查询操作日志", action = SysOperateLogAction.QUERY)
+    @OperateLog(module = "系统管理", func = "操作日志管理", remark = "分页查询操作日志",
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysOperateLogResponse>> pageByCondition(final SysOperateLogRequest sysOperateLogRequest) {
         final PageResponse<SysOperateLogResponse> result = sysOperateLogFacade.pageByCondition(sysOperateLogRequest);

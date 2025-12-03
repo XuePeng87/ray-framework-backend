@@ -1,6 +1,5 @@
 package cc.xuepeng.ray.framework.core.log.annotation;
 
-import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.common.consts.PunctuationConst;
@@ -12,6 +11,7 @@ import cc.xuepeng.ray.framework.core.web.util.WebUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -48,6 +48,7 @@ public class OperateLogAspect {
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         final HttpServletRequest request = WebUtil.getHttpServletRequest();
         final Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
+        final OperateLog operateLog = method.getAnnotation(OperateLog.class);
         final SysOperateLogDto sysOperateLogDto = new SysOperateLogDto();
         final LocalDateTime startTime = LocalDateTime.now();
         Object result = null;
@@ -55,9 +56,9 @@ public class OperateLogAspect {
             // 获取本次请求的元数据
             UserAgentInfoUtil.setUserAgentInfo(sysOperateLogDto, request);
             // 封装Request信息
-            setRequestInfo(sysOperateLogDto, request, joinPoint);
+            setRequestInfo(sysOperateLogDto, request, joinPoint, operateLog);
             // 封装注解信息
-            setAnnotationInfo(sysOperateLogDto, method.getAnnotation(OperateLog.class));
+            setAnnotationInfo(sysOperateLogDto, operateLog);
             // 设置认证信息
             setAuthInfo(sysOperateLogDto);
             result = joinPoint.proceed();
@@ -67,7 +68,7 @@ public class OperateLogAspect {
             sysOperateLogDto.setType(SysOperateLogType.ERROR);
             throw e;
         } finally {
-            if (result != null) {
+            if (result != null && BooleanUtils.isFalse(operateLog.ignoreResponse())) {
                 sysOperateLogDto.getDetail().setResult(result.toString());
             }
             sysOperateLogDto.setExeTime(exeTime(startTime));
@@ -105,10 +106,12 @@ public class OperateLogAspect {
      * @param sysOperateLogDto 系统操作日志数的据传输对象
      * @param request          请求对象
      * @param joinPoint        连接点对象
+     * @param operateLog       系统操作日志注解
      */
     private void setRequestInfo(final SysOperateLogDto sysOperateLogDto,
                                 final HttpServletRequest request,
-                                final JoinPoint joinPoint) {
+                                final JoinPoint joinPoint,
+                                final OperateLog operateLog) {
         // 请求信息
         sysOperateLogDto.setCreateTime(LocalDateTime.now());
         sysOperateLogDto.setUrl(request.getRequestURL().toString());
@@ -116,6 +119,7 @@ public class OperateLogAspect {
         sysOperateLogDto.setMethod(request.getMethod());
         sysOperateLogDto.setIp(WebUtil.getIPAddress(request));
         sysOperateLogDto.setClassName(joinPoint.getTarget().getClass().getName());
+
         // API Params信息
         final StringBuilder params = new StringBuilder();
         final Map<String, String[]> parameterMap = request.getParameterMap();
@@ -154,7 +158,6 @@ public class OperateLogAspect {
         sysOperateLogDto.setFunc(operateLog.func());
         sysOperateLogDto.setRemark(operateLog.remark());
         sysOperateLogDto.setAction(operateLog.action().name());
-        sysOperateLogDto.setPersistent(operateLog.persistent());
     }
 
     /**

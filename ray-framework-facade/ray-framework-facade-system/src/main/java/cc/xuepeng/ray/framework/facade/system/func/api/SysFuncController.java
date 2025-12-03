@@ -90,7 +90,7 @@ public class SysFuncController extends BaseController {
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "功能管理", remark = "查询功能",
-            action = SysOperateLogAction.DETAIL, persistent = false)
+            action = SysOperateLogAction.DETAIL, ignoreResponse = true)
     public Result<SysFuncResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysFuncResponse sysFuncVo = sysFuncFacade.findByCode(code);
         return DefaultResultFactory.success("查询系统功能成功", sysFuncVo);
@@ -104,7 +104,7 @@ public class SysFuncController extends BaseController {
      */
     @GetMapping("/v1")
     @OperateLog(module = "系统管理", func = "功能管理", remark = "查询功能树",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole("ROLE_SUPER_ADMIN")
     public Result<List<SysFuncResponse>> treeByCondition(
             @Validated(RequestValidateScope.page.class) final SysFuncRequest sysFuncRequest

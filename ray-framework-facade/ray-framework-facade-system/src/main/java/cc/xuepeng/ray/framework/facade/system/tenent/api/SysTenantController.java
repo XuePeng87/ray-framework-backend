@@ -90,7 +90,8 @@ public class SysTenantController extends BaseController {
      * @return 系统租户的响应对象集合
      */
     @GetMapping("/v1")
-    @OperateLog(module = "系统管理", func = "租户管理", remark = "分页查询租户", action = SysOperateLogAction.QUERY)
+    @OperateLog(module = "系统管理", func = "租户管理", remark = "分页查询租户",
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysTenantResponse>> pageByCondition(
             @Validated(RequestValidateScope.page.class) final SysTenantRequest sysTenantRequest

@@ -105,7 +105,7 @@ public class SysUserController extends BaseController {
     @GetMapping("/v1/{code}")
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "查询用户",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<SysUserResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysUserResponse result = sysUserFacade.findByCode(code);
         return DefaultResultFactory.success("查询系统用户", result);
@@ -120,7 +120,7 @@ public class SysUserController extends BaseController {
     @GetMapping("/v1/page")
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "分页查询用户",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<PageResponse<SysUserResponse>> pageByCondition(final SysUserRequest sysUserRequest) {
         final PageResponse<SysUserResponse> result = sysUserFacade.pageByCondition(sysUserRequest);
         return DefaultResultFactory.success("分页查询用户列表", result);

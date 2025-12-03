@@ -52,7 +52,7 @@ public class SysDeptController extends BaseController {
     /**
      * 修改系统部门
      *
-     * @param code         系统部门的编号
+     * @param code           系统部门的编号
      * @param sysDeptRequest 系统部门的请求对象
      * @return 是否修改成功
      */
@@ -91,7 +91,7 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门",
-            action = SysOperateLogAction.DETAIL, persistent = false)
+            action = SysOperateLogAction.DETAIL, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<SysDeptResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysDeptResponse result = sysDeptFacade.findByCode(code);
@@ -106,7 +106,7 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<List<SysDeptResponse>> treeByCondition(
             @Validated(RequestValidateScope.page.class) final SysDeptRequest sysDeptRequest

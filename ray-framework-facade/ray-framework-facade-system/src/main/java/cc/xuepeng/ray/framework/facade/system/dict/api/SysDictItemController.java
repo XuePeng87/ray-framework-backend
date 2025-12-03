@@ -90,7 +90,7 @@ public class SysDictItemController extends BaseController {
      */
     @GetMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "查询字典项",
-            action = SysOperateLogAction.DETAIL, persistent = false)
+            action = SysOperateLogAction.DETAIL, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<SysDictItemResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysDictItemResponse result = sysDictItemFacade.findByCode(code);
@@ -105,7 +105,7 @@ public class SysDictItemController extends BaseController {
      */
     @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "分页查询字典项",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysDictItemResponse>> pageByCondition(final SysDictItemRequest sysDictItemRequest) {
         final PageResponse<SysDictItemResponse> result = sysDictItemFacade.pageByCondition(sysDictItemRequest);

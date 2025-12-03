@@ -92,7 +92,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/v1/{code}")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色",
-            action = SysOperateLogAction.DETAIL, persistent = false)
+            action = SysOperateLogAction.DETAIL, ignoreResponse = true)
     public Result<SysRoleResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysRoleResponse result = sysRoleFacade.findByCode(code);
         return DefaultResultFactory.success("查询系统角色", result);
@@ -107,7 +107,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/v1/list")
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询角色列表",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<List<SysRoleResponse>> listByCondition(final SysRoleRequest sysRoleRequest) {
         final List<SysRoleResponse> result = sysRoleFacade.listByCondition(sysRoleRequest);
         return DefaultResultFactory.success("查询系统角色列表", result);
@@ -122,7 +122,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/v1/page")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "分页查询角色",
-            action = SysOperateLogAction.QUERY, persistent = false)
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<PageResponse<SysRoleResponse>> pageByCondition(final SysRoleRequest sysRoleRequest) {
         final PageResponse<SysRoleResponse> result = sysRoleFacade.pageByCondition(sysRoleRequest);
         return DefaultResultFactory.success("分页查询角色列表", result);
@@ -152,7 +152,7 @@ public class SysRoleController extends BaseController {
     @GetMapping("/v1/{code}/grant-func")
     @SaCheckRole("ROLE_SUPER_ADMIN")
     @OperateLog(module = "系统管理", func = "角色管理", remark = "查询授权功能",
-            action = SysOperateLogAction.GRANT, persistent = false)
+            action = SysOperateLogAction.GRANT, ignoreResponse = true)
     public Result<List<String>> findFunc(@PathVariable(value = "code") final String code) {
         return DefaultResultFactory.success("查询授权功能",
                 sysRoleFacade.findFuncCodesByCode(code));

@@ -35,8 +35,8 @@ public @interface OperateLog {
     SysOperateLogAction action();
 
     /**
-     * @return 是否持久化
+     * @return 是否持久化请求参数
      */
-    boolean persistent() default true;
+    boolean ignoreResponse() default false;
 
 }

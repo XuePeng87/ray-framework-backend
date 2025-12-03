@@ -35,7 +35,7 @@ public class SysAuthController extends BaseController {
      */
     @GetMapping("/v1/login-vc")
     @OperateLog(module = "系统管理", func = "身份认证", remark = "生成登录图片验证码",
-            action = SysOperateLogAction.CREATE, persistent = false)
+            action = SysOperateLogAction.CREATE, ignoreResponse = true)
     public Result<ImageVerifyCode> createLoginImageVerifyCode() {
         return DefaultResultFactory.success("创建登录图片验证码", sysAuthFacade.createLoginImageVerifyCode());
     }
