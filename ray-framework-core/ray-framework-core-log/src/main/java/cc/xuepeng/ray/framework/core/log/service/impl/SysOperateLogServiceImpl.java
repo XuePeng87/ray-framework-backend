@@ -7,6 +7,7 @@ import cc.xuepeng.ray.framework.core.log.entity.SysOperateLog;
 import cc.xuepeng.ray.framework.core.log.enums.SysOperateLogType;
 import cc.xuepeng.ray.framework.core.log.repository.SysOperateLogRepository;
 import cc.xuepeng.ray.framework.core.log.service.SysOperateLogService;
+import cc.xuepeng.ray.framework.core.mybatis.annotation.IgnoreTenant;
 import cc.xuepeng.ray.framework.core.mybatis.util.PageUtil;
 import cc.xuepeng.ray.framework.core.mybatis.util.QueryWrapperUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -35,6 +36,7 @@ public class SysOperateLogServiceImpl
      * @param sysOperateLogDto 系统操作日志的数据传输对象
      */
     @Override
+    @IgnoreTenant
     @Transactional(rollbackFor = Exception.class)
     public void create(final SysOperateLogDto sysOperateLogDto) {
         final SysOperateLog operateLog = sysOperateLogEntityConverter.dtoToEntity(sysOperateLogDto);

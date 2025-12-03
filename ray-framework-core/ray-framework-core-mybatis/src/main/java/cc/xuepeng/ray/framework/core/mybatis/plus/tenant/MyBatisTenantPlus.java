@@ -5,6 +5,7 @@ import cc.xuepeng.ray.framework.core.auth.model.CurrentUserRole;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.common.enums.SystemRole;
 import cc.xuepeng.ray.framework.core.common.util.ThreadLocalUtil;
+import cc.xuepeng.ray.framework.core.mybatis.consts.TenantPlusConst;
 import cc.xuepeng.ray.framework.core.mybatis.property.MyBatisPlusProperty;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -91,7 +92,7 @@ public class MyBatisTenantPlus implements TenantLineHandler {
             return true;
         }
         // 如果开启了租户忽略不做租户过滤
-        if (ObjectUtils.isNotEmpty(ThreadLocalUtil.get(MyBatisTenantPlusConst.THREAD_LOCAL_KEY))) {
+        if (ObjectUtils.isNotEmpty(ThreadLocalUtil.get(TenantPlusConst.THREAD_LOCAL_KEY))) {
             return true;
         }
         return myBatisPlusProperty.getTenant().getIgnoresTables().contains(tableName);

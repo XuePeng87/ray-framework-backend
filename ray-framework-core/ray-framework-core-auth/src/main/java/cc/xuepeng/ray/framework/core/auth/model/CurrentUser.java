@@ -27,6 +27,11 @@ public class CurrentUser implements Serializable {
     private String tenantCode;
 
     /**
+     * 部门编号
+     */
+    private String deptCode;
+
+    /**
      * 编号
      */
     private String code;
@@ -49,6 +54,11 @@ public class CurrentUser implements Serializable {
      * 头像
      */
     private String avatar;
+
+    /**
+     * 是否是管理员
+     */
+    private Boolean admin;
 
     /**
      * 系统租户

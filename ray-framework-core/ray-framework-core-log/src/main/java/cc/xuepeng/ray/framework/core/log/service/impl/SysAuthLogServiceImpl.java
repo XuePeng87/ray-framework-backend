@@ -5,6 +5,7 @@ import cc.xuepeng.ray.framework.core.log.domain.SysAuthLogDto;
 import cc.xuepeng.ray.framework.core.log.entity.SysAuthLog;
 import cc.xuepeng.ray.framework.core.log.repository.SysAuthLogRepository;
 import cc.xuepeng.ray.framework.core.log.service.SysAuthLogService;
+import cc.xuepeng.ray.framework.core.mybatis.annotation.IgnoreTenant;
 import cc.xuepeng.ray.framework.core.mybatis.util.PageUtil;
 import cc.xuepeng.ray.framework.core.mybatis.util.QueryWrapperUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -32,6 +33,7 @@ public class SysAuthLogServiceImpl
      * @param sysAuthLogDto 系统登录登出日志的数据传输对象
      */
     @Override
+    @IgnoreTenant
     public void create(final SysAuthLogDto sysAuthLogDto) {
         final SysAuthLog sysAuthLog = sysAuthLogEntityConverter.dtoToEntity(sysAuthLogDto);
         super.save(sysAuthLog);

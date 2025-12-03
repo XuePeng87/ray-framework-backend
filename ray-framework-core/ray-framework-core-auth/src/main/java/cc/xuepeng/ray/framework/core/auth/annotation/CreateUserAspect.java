@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 /**
  * 设置创建人的切面类
  * 用于在方法调用时，获取当前登录人，用作CreateUser注解
@@ -18,7 +20,19 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class CreateUserAspect {
+public class CreateUserAspect extends AbstractUserAspect {
+
+    /**
+     * 设置当前登录人的相关信息
+     *
+     * @param baseDto BaseDto对象
+     */
+    @Override
+    public void doSetCurrentInfo(BaseDto baseDto) {
+        final CurrentUser currentUser = identificationService.getCurrentUser();
+        baseDto.setCreateUser(currentUser.getCode());
+        baseDto.setModifyUser(currentUser.getCode());
+    }
 
     /**
      * 设置创建人
@@ -36,10 +50,9 @@ public class CreateUserAspect {
     @Before("createUser()")
     public void doBefore(final JoinPoint joinPoint) {
         for (final Object arg : joinPoint.getArgs()) {
-            if (arg instanceof BaseDto dto && identificationService.isLogin()) {
-                final CurrentUser currentUser = identificationService.getCurrentUser();
-                dto.setCreateUser(currentUser.getCode());
-                dto.setModifyUser(currentUser.getCode());
+            if ((arg instanceof BaseDto || arg instanceof Collection<?>)
+                    && identificationService.isLogin()) {
+                super.setCurrentUserInfo(arg);
             }
         }
     }

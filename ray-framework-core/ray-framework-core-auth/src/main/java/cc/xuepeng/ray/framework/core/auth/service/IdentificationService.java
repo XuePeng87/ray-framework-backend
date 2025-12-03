@@ -32,6 +32,11 @@ public interface IdentificationService {
      */
     CurrentUser getCurrentUser();
 
+     /**
+     * @return 当前登录用户是否是管理员
+     */
+    boolean isAdmin();
+
     /**
      * 登出
      */

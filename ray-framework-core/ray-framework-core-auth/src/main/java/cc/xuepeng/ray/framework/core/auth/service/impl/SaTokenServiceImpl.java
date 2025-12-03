@@ -65,6 +65,14 @@ public class SaTokenServiceImpl implements IdentificationService {
     }
 
     /**
+     * @return 当前登录用户是否是管理员
+     */
+    @Override
+    public boolean isAdmin() {
+        return getCurrentUser().getAdmin();
+    }
+
+    /**
      * 登出
      */
     @Override

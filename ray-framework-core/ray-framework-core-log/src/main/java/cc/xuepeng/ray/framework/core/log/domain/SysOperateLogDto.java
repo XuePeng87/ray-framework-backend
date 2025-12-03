@@ -17,11 +17,6 @@ import lombok.*;
 public class SysOperateLogDto extends BaseDto {
 
     /**
-     * 租户编号
-     */
-    private String tenantCode;
-
-    /**
      * 日志类型：1=访问日志；2=错误日志
      */
     private SysOperateLogType type;

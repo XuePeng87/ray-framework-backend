@@ -1,5 +1,6 @@
 package cc.xuepeng.ray.framework.core.log.annotation;
 
+import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.common.consts.PunctuationConst;
@@ -59,7 +60,6 @@ public class OperateLogAspect {
             setAnnotationInfo(sysOperateLogDto, method.getAnnotation(OperateLog.class));
             // 设置认证信息
             setAuthInfo(sysOperateLogDto);
-
             result = joinPoint.proceed();
             return result;
         } catch (Throwable e) {
@@ -86,10 +86,18 @@ public class OperateLogAspect {
         // 设置用户信息
         if (identificationService.isLogin()) {
             final CurrentUser currentUser = identificationService.getCurrentUser();
+            sysOperateLogDto.setTenantCode(currentUser.getTenantCode());
             sysOperateLogDto.setCreateUser(currentUser.getCode());
             sysOperateLogDto.setPhoneNumber(currentUser.getPhoneNumber());
+        } else {
+            sysOperateLogDto.setTenantCode(DEFAULT_TENANT_CODE);
+            sysOperateLogDto.setCreateUser(DEFAULT_CREATE_USER);
         }
     }
+
+    // TODO 放到配置中心
+    private static final String DEFAULT_TENANT_CODE = "e79b0554909b4d43921e53d99f325842";
+    private static final String DEFAULT_CREATE_USER = "5664b7f6cddb42aca28aedd07bb051a1";
 
     /**
      * 设置Request信息

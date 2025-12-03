@@ -27,6 +27,16 @@ public class BaseDto implements Serializable {
     private Long id;
 
     /**
+     * 租户编码
+     */
+    private String tenantCode;
+
+    /**
+     * 部门编码
+     */
+    private String deptCode;
+
+    /**
      * 是否删除
      */
     private Boolean deleted;

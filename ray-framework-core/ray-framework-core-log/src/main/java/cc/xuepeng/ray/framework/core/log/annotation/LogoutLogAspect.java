@@ -1,6 +1,5 @@
 package cc.xuepeng.ray.framework.core.log.annotation;
 
-import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
 import cc.xuepeng.ray.framework.core.auth.model.CurrentUser;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
 import cc.xuepeng.ray.framework.core.log.disruptor.SysAuthLogDisruptorManager;
@@ -53,6 +52,7 @@ public class LogoutLogAspect {
             sysAuthLogDto.setLoginIp(WebUtil.getIPAddress(request));
             if (identificationService.isLogin()) {
                 final CurrentUser currentUser = identificationService.getCurrentUser();
+                sysAuthLogDto.setTenantCode(currentUser.getTenantCode());
                 sysAuthLogDto.setCreateUser(currentUser.getCode());
                 sysAuthLogDto.setPhoneNumber(currentUser.getPhoneNumber());
             }
@@ -62,11 +62,7 @@ public class LogoutLogAspect {
             sysAuthLogDto.setType(SysAuthLogType.LOGOUT);
             // 发送登录日志到Disruptor
             log.info("LogoutLogAspect -> {}", sysAuthLogDto);
-            final AsyncAuthMessage<SysAuthLogDto> message = new AsyncAuthMessage<>(
-                    identificationService.getToken(),
-                    sysAuthLogDto
-            );
-            sysAuthLogDisruptorManager.publish(message);
+            sysAuthLogDisruptorManager.publish(sysAuthLogDto);
         } catch (Throwable throwable) {
             log.error("LoginLogAspect -> 登录日志切面处理异常: ", throwable);
             throw new CreateLogFailedException(throwable);

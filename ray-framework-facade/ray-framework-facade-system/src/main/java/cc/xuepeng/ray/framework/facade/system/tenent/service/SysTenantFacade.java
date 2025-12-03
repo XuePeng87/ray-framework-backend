@@ -4,8 +4,6 @@ import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
 import cc.xuepeng.ray.framework.facade.system.tenent.request.SysTenantRequest;
 import cc.xuepeng.ray.framework.facade.system.tenent.response.SysTenantResponse;
 
-import java.util.List;
-
 /**
  * 系统租户的业务处理门面接口
  *

@@ -29,10 +29,8 @@ public class SysOperateLogEventHandler implements EventHandler<SysOperateLogDto>
     @Override
     public void onEvent(SysOperateLogDto event, long sequence, boolean endOfBatch) {
         log.info("Disruptor -> 收到消息: {}", event.toString());
-        if (event.isPersistent()) {
-            // 持久化操作日志
-            rocketMQClient.syncSend("sys-operate-log", event);
-        }
+        // TODO 判断持久化操作日志
+        rocketMQClient.syncSend("sys-operate-log", event);
     }
 
     /**

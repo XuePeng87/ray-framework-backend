@@ -1,8 +1,6 @@
 package cc.xuepeng.ray.framework.core.log.listener;
 
-import cc.xuepeng.ray.framework.core.auth.annotation.AsyncAuthHandler;
 import cc.xuepeng.ray.framework.core.log.domain.SysAuthLogDto;
-import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
 import cc.xuepeng.ray.framework.core.log.service.SysAuthLogService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +19,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RocketMQMessageListener(
         topic = "sys-auth-log",
-        consumerGroup = "sys-auth-log-consumer-group"
+        consumerGroup = "sys-auth-log-consumer-group",
+        maxReconsumeTimes= 0
 )
-public class SysAuthLogConsumer implements RocketMQListener<AsyncAuthMessage<SysAuthLogDto>> {
+public class SysAuthLogConsumer implements RocketMQListener<SysAuthLogDto> {
 
     /**
      * 处理接收到的系统登录认证日志消息
@@ -32,10 +31,9 @@ public class SysAuthLogConsumer implements RocketMQListener<AsyncAuthMessage<Sys
      * @param message 接收到的系统登录认证日志消息对象，包含待持久化的日志数据
      */
     @Override
-    @AsyncAuthHandler
-    public void onMessage(final AsyncAuthMessage<SysAuthLogDto> message) {
+    public void onMessage(final SysAuthLogDto message) {
         log.info("RocketMQ -> 收到消息: {}", message);
-        sysAuthLogService.create(message.getPayload());
+        sysAuthLogService.create(message);
     }
 
     /**

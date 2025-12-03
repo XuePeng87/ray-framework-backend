@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.core.log.disruptor;
 
-import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
 import cc.xuepeng.ray.framework.core.disruptor.manager.GenericDisruptorManager;
+import cc.xuepeng.ray.framework.core.log.domain.SysAuthLogDto;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
 import jakarta.annotation.Resource;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author xuepeng
  */
 @Component
-public class SysAuthLogDisruptorManager extends GenericDisruptorManager<AsyncAuthMessage<?>> {
+public class SysAuthLogDisruptorManager extends GenericDisruptorManager<SysAuthLogDto> {
 
     /**
      * 创建系统登录认证日志事件的工厂
@@ -23,8 +23,8 @@ public class SysAuthLogDisruptorManager extends GenericDisruptorManager<AsyncAut
      * @return 用于创建SysAuthLogDto实例的EventFactory
      */
     @Override
-    protected EventFactory<AsyncAuthMessage<?>> eventFactory() {
-        return AsyncAuthMessage::new;
+    protected EventFactory<SysAuthLogDto> eventFactory() {
+        return SysAuthLogDto::new;
     }
 
     /**
@@ -35,7 +35,7 @@ public class SysAuthLogDisruptorManager extends GenericDisruptorManager<AsyncAut
      */
     @SuppressWarnings("unchecked")
     @Override
-    protected EventHandler<AsyncAuthMessage<?>>[] eventHandlers() {
+    protected EventHandler<SysAuthLogDto>[] eventHandlers() {
         return new EventHandler[]{sysAuthLogEventHandler};
     }
 

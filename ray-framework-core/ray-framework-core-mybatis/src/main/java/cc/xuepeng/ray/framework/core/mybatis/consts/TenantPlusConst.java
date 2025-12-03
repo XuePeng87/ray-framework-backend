@@ -1,16 +1,16 @@
-package cc.xuepeng.ray.framework.core.mybatis.plus.tenant;
+package cc.xuepeng.ray.framework.core.mybatis.consts;
 
 /**
  * 租户插件的常量类
  *
  * @author xuepeng
  */
-public class MyBatisTenantPlusConst {
+public class TenantPlusConst {
 
     /**
      * 构造函数
      */
-    private MyBatisTenantPlusConst() {
+    private TenantPlusConst() {
     }
 
     /**

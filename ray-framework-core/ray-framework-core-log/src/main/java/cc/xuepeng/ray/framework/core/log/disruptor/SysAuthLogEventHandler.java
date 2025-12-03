@@ -1,6 +1,6 @@
 package cc.xuepeng.ray.framework.core.log.disruptor;
 
-import cc.xuepeng.ray.framework.core.auth.message.AsyncAuthMessage;
+import cc.xuepeng.ray.framework.core.log.domain.SysAuthLogDto;
 import cc.xuepeng.ray.framework.core.rocketmq.client.RocketMQClient;
 import com.lmax.disruptor.EventHandler;
 import jakarta.annotation.Resource;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class SysAuthLogEventHandler implements EventHandler<AsyncAuthMessage<?>> {
+public class SysAuthLogEventHandler implements EventHandler<SysAuthLogDto> {
 
     /**
      * 处理系统登录认证日志事件
@@ -27,7 +27,7 @@ public class SysAuthLogEventHandler implements EventHandler<AsyncAuthMessage<?>>
      * @param endOfBatch 是否为当前批次中的最后一个事件
      */
     @Override
-    public void onEvent(AsyncAuthMessage event, long sequence, boolean endOfBatch) {
+    public void onEvent(SysAuthLogDto event, long sequence, boolean endOfBatch) {
         log.info("Disruptor -> 收到消息: {}", event.toString());
         rocketMQClient.syncSend("sys-auth-log", event);
     }

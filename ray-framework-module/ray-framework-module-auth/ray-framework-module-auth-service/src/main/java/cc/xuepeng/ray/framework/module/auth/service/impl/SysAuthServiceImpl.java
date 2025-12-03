@@ -2,6 +2,7 @@ package cc.xuepeng.ray.framework.module.auth.service.impl;
 
 import cc.xuepeng.ray.framework.core.auth.model.*;
 import cc.xuepeng.ray.framework.core.auth.service.IdentificationService;
+import cc.xuepeng.ray.framework.core.common.enums.SystemRole;
 import cc.xuepeng.ray.framework.module.auth.converter.CurrentUserConverter;
 import cc.xuepeng.ray.framework.module.auth.dto.SysLoginDto;
 import cc.xuepeng.ray.framework.module.auth.exception.SysLoginFailedException;
@@ -24,6 +25,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 系统认证的业务处理类
@@ -61,6 +63,13 @@ public class SysAuthServiceImpl implements SysAuthService {
             final List<SysRoleDto> sysRoleDtos = sysRoleService.findByCodes(roleCodes);
             final List<CurrentUserRole> currentUserRole = currentUserConverter.sysRoleListToCurrentUserRoleList(sysRoleDtos);
             currentUser.setRoles(currentUserRole);
+            // 设置管理员
+            currentUser.setAdmin(sysRoleDtos.stream()
+                    .map(SysRoleDto::getName)
+                    .anyMatch(
+                            Set.of(SystemRole.SUPER_ADMIN.getDesc(), SystemRole.SYSTEM_ADMIN.getDesc())::contains
+                    )
+            );
             // 设置功能
             final List<String> funcCodes = sysRoleFuncGrantService.findFuncsByRoleCodes(roleCodes);
             final List<SysFuncDto> sysFuncDtos = sysFuncService.findByCodes(funcCodes);

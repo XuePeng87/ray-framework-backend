@@ -18,7 +18,18 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class ModifyUserAspect {
+public class ModifyUserAspect extends AbstractUserAspect {
+
+    /**
+     * 设置当前登录人的相关信息
+     *
+     * @param baseDto BaseDto对象
+     */
+    @Override
+    public void doSetCurrentInfo(BaseDto baseDto) {
+        final CurrentUser currentUser = identificationService.getCurrentUser();
+        baseDto.setModifyUser(currentUser.getCode());
+    }
 
     /**
      * 设置修改人
@@ -37,8 +48,7 @@ public class ModifyUserAspect {
     public void doBefore(final JoinPoint joinPoint) {
         for (final Object arg : joinPoint.getArgs()) {
             if (arg instanceof BaseDto dto) {
-                final CurrentUser currentUser = identificationService.getCurrentUser();
-                dto.setModifyUser(currentUser.getCode());
+                super.setCurrentUserInfo(dto);
             }
         }
     }
