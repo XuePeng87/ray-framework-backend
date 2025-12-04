@@ -22,7 +22,7 @@ public class IgnoreTenantAspect {
     /**
      * 对注解修饰的方法进行切面处理
      */
-    @Pointcut(value = "@annotation(cc.xuepeng.ray.framework.core.mybatis.plus.tenant.IgnoreTenant)")
+    @Pointcut(value = "@annotation(cc.xuepeng.ray.framework.core.mybatis.annotation.IgnoreTenant)")
     private void ignoreTenant() {
         // 对请求进行切面处理
     }

@@ -50,12 +50,12 @@ public class SysDictItemFacadeImpl implements SysDictItemFacade {
     /**
      * 删除系统字典项
      *
-     * @param codes 系统字典项的编号集合
+     * @param code 系统字典项的编号
      * @return 是否删除成功
      */
     @Override
-    public boolean delete(final List<String> codes) {
-        return sysDictItemService.deleteByCodes(codes);
+    public boolean delete(final String code) {
+        return sysDictItemService.delete(code);
     }
 
     /**

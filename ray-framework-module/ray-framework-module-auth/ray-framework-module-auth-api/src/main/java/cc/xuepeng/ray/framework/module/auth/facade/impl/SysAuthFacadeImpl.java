@@ -13,6 +13,11 @@ import jakarta.annotation.Resource;
 import org.apache.commons.lang3.Strings;
 import org.springframework.stereotype.Component;
 
+/**
+ * 系统认证的业务处理门面接口的实现类
+ *
+ * @author xuepeng
+ */
 @Component
 public class SysAuthFacadeImpl implements SysAuthFacade {
 

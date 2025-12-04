@@ -5,6 +5,7 @@ import cc.xuepeng.ray.framework.core.common.domain.request.BaseRequest;
 import cc.xuepeng.ray.framework.core.common.domain.request.RequestValidateScope;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -47,12 +48,13 @@ public class SysTenantRequest extends BaseRequest implements RequestValidateScop
     /**
      * 状态：0=停用；1=启用；
      */
+    @NotNull(message = "状态不能为空", groups = {create.class, update.class})
     private BizStatusDto status;
 
     /**
      * 有效期
      */
-    private LocalDateTime tenantExpireTime;
+    private LocalDateTime expireTime;
 
     /**
      * 有效期开始时间

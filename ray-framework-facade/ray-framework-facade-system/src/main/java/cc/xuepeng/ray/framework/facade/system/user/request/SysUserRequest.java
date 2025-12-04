@@ -24,13 +24,6 @@ import java.util.List;
 public class SysUserRequest extends BaseRequest implements RequestValidateScope {
 
     /**
-     * 部门编号
-     */
-    @NotBlank(message = "部门编号不能为空", groups = {create.class, update.class})
-    @Length(max = 32, message = "部门编号长度不能大于32个字符", groups = {create.class, update.class, page.class})
-    private String deptCode;
-
-    /**
      * 角色编号
      */
     @NotNull(message = "角色编号不能为空", groups = {create.class, update.class})

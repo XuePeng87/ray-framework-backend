@@ -1,5 +1,7 @@
 package cc.xuepeng.ray.framework.module.tenant.service.impl;
 
+import cc.xuepeng.ray.framework.core.auth.annotation.CreateUser;
+import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.util.ExistsUtil;
 import cc.xuepeng.ray.framework.core.common.util.RandomUtil;
 import cc.xuepeng.ray.framework.core.mybatis.consts.EntityConst;
@@ -56,6 +58,7 @@ public class SysTenantServiceImpl
      * @return 租户编号
      */
     @Override
+    @CreateUser
     public boolean create(final SysTenantDto sysTenantDto) {
         checkInfoDuplicate(0L, sysTenantDto);
         sysTenantDto.setCode(RandomUtil.get32UUID());
@@ -70,6 +73,7 @@ public class SysTenantServiceImpl
      * @return 是否修改成功
      */
     @Override
+    @ModifyUser
     public boolean update(final SysTenantDto sysTenantDto) {
         final SysTenantDto tenantDto = this.findByCode(sysTenantDto.getCode());
         checkInfoDuplicate(tenantDto.getId(), sysTenantDto);

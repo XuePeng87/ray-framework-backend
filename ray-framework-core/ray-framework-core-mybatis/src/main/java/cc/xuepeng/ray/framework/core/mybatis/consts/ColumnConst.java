@@ -21,11 +21,11 @@ public final class ColumnConst {
     /**
      * 创建时间字段名称
      */
-    public static final String CREATE_TIME = "create_time";
+    public static final String CREATE_TIME = "createTime";
 
     /**
      * 修改时间字段名称
      */
-    public static final String MODIFY_TIME = "modify_time";
+    public static final String MODIFY_TIME = "modifyTime";
 
 }

@@ -102,7 +102,7 @@ public class SysFuncController extends BaseController {
      * @param sysFuncRequest 系统功能的请求对象
      * @return 系统功能的响应对象集合
      */
-    @GetMapping("/v1")
+    @GetMapping("/v1/tree")
     @OperateLog(module = "系统管理", func = "功能管理", remark = "查询功能树",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole("ROLE_SUPER_ADMIN")

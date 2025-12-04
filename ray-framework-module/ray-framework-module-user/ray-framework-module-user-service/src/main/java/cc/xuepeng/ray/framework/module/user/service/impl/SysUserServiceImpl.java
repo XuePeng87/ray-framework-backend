@@ -59,6 +59,7 @@ public class SysUserServiceImpl
             throw new SysUserDuplicateException("系统用户邮箱[" + email + "]已存在");
         }
         sysUserDto.setCode(RandomUtil.get32UUID());
+        // TODO 默认密码去配置中心
         sysUserDto.setPassword(DigestUtil.md5Hex("000000"));
         final SysUser sysUser = sysUserEntityConverter.dtoToEntity(sysUserDto);
         return super.save(sysUser);
@@ -188,6 +189,7 @@ public class SysUserServiceImpl
     public boolean resetPassword(final String code) {
         final QueryWrapper<SysUser> wrapper = this.createQueryWrapper(code);
         final SysUser sysUser = new SysUser();
+        // TODO 默认密码去配置中心
         sysUser.setPassword(DigestUtil.md5Hex("000000"));
         return super.update(sysUser, wrapper);
     }

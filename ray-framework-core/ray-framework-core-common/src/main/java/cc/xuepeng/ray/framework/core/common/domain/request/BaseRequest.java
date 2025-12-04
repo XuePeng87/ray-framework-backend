@@ -21,6 +21,16 @@ import java.time.LocalDateTime;
 public class BaseRequest implements Serializable {
 
     /**
+     * 租户编号
+     */
+    private String tenantCode;
+
+    /**
+     * 部门编号
+     */
+    private String deptCode;
+
+    /**
      * 开始创建时间
      */
     private LocalDateTime beginCreateTime;

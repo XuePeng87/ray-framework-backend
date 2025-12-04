@@ -28,7 +28,7 @@ public class CreateUserAspect extends AbstractUserAspect {
      * @param baseDto BaseDto对象
      */
     @Override
-    public void doSetCurrentInfo(BaseDto baseDto) {
+    public void setUserInfo(BaseDto baseDto) {
         final CurrentUser currentUser = identificationService.getCurrentUser();
         baseDto.setCreateUser(currentUser.getCode());
         baseDto.setModifyUser(currentUser.getCode());
@@ -52,7 +52,7 @@ public class CreateUserAspect extends AbstractUserAspect {
         for (final Object arg : joinPoint.getArgs()) {
             if ((arg instanceof BaseDto || arg instanceof Collection<?>)
                     && identificationService.isLogin()) {
-                super.setCurrentUserInfo(arg);
+                super.setAuthInfo(arg);
             }
         }
     }

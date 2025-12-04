@@ -33,10 +33,10 @@ public interface SysDictFacade {
     /**
      * 删除系统字典
      *
-     * @param codes 系统字典的编号集合
+     * @param code 系统字典的编号
      * @return 是否删除成功
      */
-    boolean delete(final List<String> codes);
+    boolean delete(final String code);
 
     /**
      * 根据编号查询系统字典

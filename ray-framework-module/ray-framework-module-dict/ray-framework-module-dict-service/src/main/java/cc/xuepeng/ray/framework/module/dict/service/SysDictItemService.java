@@ -32,10 +32,10 @@ public interface SysDictItemService {
     /**
      * 根据编号删除系统字典项
      *
-     * @param codes 系统字典项的编号集合
+     * @param code 系统字典项的编号
      * @return 是否删除成功
      */
-    boolean deleteByCodes(final List<String> codes);
+    boolean delete(final String code);
 
     /**
      * 根据编号查询系统字典项

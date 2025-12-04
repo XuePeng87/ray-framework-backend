@@ -86,16 +86,12 @@ public class SysDictServiceImpl
     /**
      * 根据编号删除系统字典
      *
-     * @param codes 系统字典的编号集合
+     * @param code 系统字典的编号
      * @return 是否删除成功
      */
     @Override
-    public boolean deleteByCodes(final List<String> codes) {
-        if (CollectionUtils.isEmpty(codes)) {
-            return Boolean.TRUE;
-        }
-        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper();
-        wrapper.lambda().in(SysDict::getCode, codes);
+    public boolean delete(final String code) {
+        final QueryWrapper<SysDict> wrapper = this.createQueryWrapper(code);
         return super.remove(wrapper);
     }
 

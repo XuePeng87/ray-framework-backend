@@ -53,8 +53,8 @@ public class SysTenantController extends BaseController {
      * @param sysTenantRequest 系统租户的请求对象
      * @return 是否修改成功
      */
+    @PutMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "租户管理", remark = "修改租户", action = SysOperateLogAction.UPDATE)
-    @ModifyUser
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN"})
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
@@ -73,7 +73,6 @@ public class SysTenantController extends BaseController {
      */
     @DeleteMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "租户管理", remark = "删除租户", action = SysOperateLogAction.DELETE)
-    @ModifyUser
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN"})
     public Result<Boolean> delete(
             @PathVariable(value = "code") final String code
@@ -89,7 +88,7 @@ public class SysTenantController extends BaseController {
      * @param sysTenantRequest 系统租户的请求对象
      * @return 系统租户的响应对象集合
      */
-    @GetMapping("/v1")
+    @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "租户管理", remark = "分页查询租户",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)

@@ -104,7 +104,7 @@ public class SysDeptController extends BaseController {
      * @param sysDeptRequest 系统部门的请求对象
      * @return 系统部门的响应对象集合
      */
-    @GetMapping("/v1")
+    @GetMapping("/v1/tree")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)

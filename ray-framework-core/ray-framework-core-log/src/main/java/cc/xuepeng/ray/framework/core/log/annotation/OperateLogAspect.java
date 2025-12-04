@@ -56,11 +56,12 @@ public class OperateLogAspect {
             // 获取本次请求的元数据
             UserAgentInfoUtil.setUserAgentInfo(sysOperateLogDto, request);
             // 封装Request信息
-            setRequestInfo(sysOperateLogDto, request, joinPoint, operateLog);
+            setRequestInfo(sysOperateLogDto, request, joinPoint);
             // 封装注解信息
             setAnnotationInfo(sysOperateLogDto, operateLog);
             // 设置认证信息
             setAuthInfo(sysOperateLogDto);
+            sysOperateLogDto.setType(SysOperateLogType.ACCESS);
             result = joinPoint.proceed();
             return result;
         } catch (Throwable e) {
@@ -72,7 +73,6 @@ public class OperateLogAspect {
                 sysOperateLogDto.getDetail().setResult(result.toString());
             }
             sysOperateLogDto.setExeTime(exeTime(startTime));
-            sysOperateLogDto.setType(SysOperateLogType.ACCESS);
             log.info("OperateLogAspect -> {}", sysOperateLogDto);
             sysOperateLogDisruptorManager.publish(sysOperateLogDto);
         }
@@ -106,12 +106,10 @@ public class OperateLogAspect {
      * @param sysOperateLogDto 系统操作日志数的据传输对象
      * @param request          请求对象
      * @param joinPoint        连接点对象
-     * @param operateLog       系统操作日志注解
      */
     private void setRequestInfo(final SysOperateLogDto sysOperateLogDto,
                                 final HttpServletRequest request,
-                                final JoinPoint joinPoint,
-                                final OperateLog operateLog) {
+                                final JoinPoint joinPoint) {
         // 请求信息
         sysOperateLogDto.setCreateTime(LocalDateTime.now());
         sysOperateLogDto.setUrl(request.getRequestURL().toString());

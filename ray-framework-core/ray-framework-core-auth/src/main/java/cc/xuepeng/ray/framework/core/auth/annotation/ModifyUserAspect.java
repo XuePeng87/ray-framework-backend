@@ -26,7 +26,7 @@ public class ModifyUserAspect extends AbstractUserAspect {
      * @param baseDto BaseDto对象
      */
     @Override
-    public void doSetCurrentInfo(BaseDto baseDto) {
+    public void setUserInfo(BaseDto baseDto) {
         final CurrentUser currentUser = identificationService.getCurrentUser();
         baseDto.setModifyUser(currentUser.getCode());
     }
@@ -48,7 +48,7 @@ public class ModifyUserAspect extends AbstractUserAspect {
     public void doBefore(final JoinPoint joinPoint) {
         for (final Object arg : joinPoint.getArgs()) {
             if (arg instanceof BaseDto dto) {
-                super.setCurrentUserInfo(dto);
+                super.setAuthInfo(dto);
             }
         }
     }

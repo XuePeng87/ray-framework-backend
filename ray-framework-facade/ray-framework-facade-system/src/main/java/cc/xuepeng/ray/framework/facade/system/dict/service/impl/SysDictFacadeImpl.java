@@ -36,7 +36,7 @@ public class SysDictFacadeImpl implements SysDictFacade {
     /**
      * 修改系统字典
      *
-     * @param code         系统字典的编号
+     * @param code           系统字典的编号
      * @param sysDictRequest 系统字典的请求对象
      * @return 是否修改成功
      */
@@ -50,12 +50,12 @@ public class SysDictFacadeImpl implements SysDictFacade {
     /**
      * 删除系统字典
      *
-     * @param codes 系统字典的编号集合
+     * @param code 系统字典的编号
      * @return 是否删除成功
      */
     @Override
-    public boolean delete(final List<String> codes) {
-        return sysDictService.deleteByCodes(codes);
+    public boolean delete(final String code) {
+        return sysDictService.delete(code);
     }
 
     /**

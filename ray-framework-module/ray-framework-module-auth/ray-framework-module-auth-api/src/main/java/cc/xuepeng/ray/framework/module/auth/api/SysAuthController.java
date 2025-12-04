@@ -53,8 +53,14 @@ public class SysAuthController extends BaseController {
         return DefaultResultFactory.success("登录成功", accessToken);
     }
 
+    /**
+     * 获取当前登录人
+     *
+     * @return 当前登录人
+     */
     @GetMapping("/v1/current-user")
-    @OperateLog(module = "系统管理", func = "身份认证", remark = "获取当前登录人", action = SysOperateLogAction.QUERY)
+    @OperateLog(module = "系统管理", func = "身份认证", remark = "获取当前登录人",
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<CurrentUser> getCurrentUser() {
         return DefaultResultFactory.success("获取当前登录人", sysAuthFacade.getCurrentUser());
     }

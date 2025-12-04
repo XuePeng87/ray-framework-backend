@@ -51,7 +51,7 @@ public class SysDictItemController extends BaseController {
     /**
      * 修改系统字典项
      *
-     * @param code             系统字典项的编号
+     * @param code               系统字典项的编号
      * @param sysDictItemRequest 系统字典项的请求对象
      * @return 是否修改成功
      */
@@ -70,14 +70,14 @@ public class SysDictItemController extends BaseController {
     /**
      * 删除系统字典项
      *
-     * @param codes 系统字典项的编号集合
+     * @param code 系统字典项的编号
      * @return 是否删除成功
      */
-    @DeleteMapping("/v1")
+    @DeleteMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "字典管理", remark = "删除字典项", action = SysOperateLogAction.DELETE)
     @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
-    public Result<Boolean> delete(@RequestBody final List<String> codes) {
-        return sysDictItemFacade.delete(codes) ?
+    public Result<Boolean> delete(@PathVariable(value = "code") final String code) {
+        return sysDictItemFacade.delete(code) ?
                 DefaultResultFactory.success("删除系统字典项成功", Boolean.TRUE) :
                 DefaultResultFactory.error("删除系统字典项失败", Boolean.FALSE);
     }

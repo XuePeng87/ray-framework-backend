@@ -70,6 +70,13 @@ public class MyBatisTenantPlus implements TenantLineHandler {
      */
     @Override
     public boolean ignoreTable(String tableName) {
+        // 如果开启了租户忽略不做租户过滤
+        if (ObjectUtils.isNotEmpty(ThreadLocalUtil.get(TenantPlusConst.THREAD_LOCAL_KEY))) {
+            return true;
+        }
+        if (myBatisPlusProperty.getTenant().getIgnoresTables().contains(tableName)) {
+            return true;
+        }
         // 没有登录不做租户过滤
         try {
             if (!identificationService.isLogin()) {
@@ -88,14 +95,7 @@ public class MyBatisTenantPlus implements TenantLineHandler {
                 .toList();
         // 创建不进行租户过滤的角色名称集合
         final Set<String> ignoreRoles = Set.of(SystemRole.SUPER_ADMIN.getDesc(), SystemRole.SYSTEM_ADMIN.getDesc());
-        if (currentUserRoleNames.stream().anyMatch(ignoreRoles::contains)) {
-            return true;
-        }
-        // 如果开启了租户忽略不做租户过滤
-        if (ObjectUtils.isNotEmpty(ThreadLocalUtil.get(TenantPlusConst.THREAD_LOCAL_KEY))) {
-            return true;
-        }
-        return myBatisPlusProperty.getTenant().getIgnoresTables().contains(tableName);
+        return currentUserRoleNames.stream().anyMatch(ignoreRoles::contains);
     }
 
     /**

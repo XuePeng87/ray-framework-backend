@@ -7,14 +7,13 @@ import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Collection;
 
+/**
+ * 抽象的用户信息设置切面类。
+ * 提供设置当前登录人、租户和部门信息的模板方法
+ *
+ * @author xuepeng
+ */
 public abstract class AbstractUserAspect {
-
-    /**
-     * 设置当前登录人的相关信息
-     *
-     * @param baseDto BaseDto对象
-     */
-    abstract void doSetCurrentInfo(final BaseDto baseDto);
 
     /**
      * 设置本次操作的创建人
@@ -23,7 +22,7 @@ public abstract class AbstractUserAspect {
      *
      * @param arg 方法参数
      */
-    protected void setCurrentUserInfo(final Object arg) {
+    protected void setAuthInfo(final Object arg) {
         // 如果参数是BaseDto类型，则设置创建人信息
         if (arg instanceof BaseDto dto) {
             this.setCurrentInfo(dto);
@@ -32,7 +31,7 @@ public abstract class AbstractUserAspect {
         // 如果参数是Collection类型，则递归设置每个元素的创建人信息
         if (arg instanceof Collection<?> c) {
             for (Object obj : c) {
-                setCurrentUserInfo(obj);
+                setAuthInfo(obj);
             }
         }
     }
@@ -43,12 +42,24 @@ public abstract class AbstractUserAspect {
      * @param baseDto BaseDto对象
      */
     private void setCurrentInfo(final BaseDto baseDto) {
-        this.doSetCurrentInfo(baseDto);
+        this.setUserInfo(baseDto);
         // TODO 是否开启租户插件
         this.setTenantInfo(baseDto);
         this.setDeptInfo(baseDto);
     }
 
+    /**
+     * 设置当前登录人的相关信息
+     *
+     * @param baseDto BaseDto对象
+     */
+    abstract void setUserInfo(final BaseDto baseDto);
+
+    /**
+     * 设置当前登录人所属的租户编号
+     *
+     * @param baseDto BaseDto对象
+     */
     private void setTenantInfo(final BaseDto baseDto) {
         // 如果当前登录人是管理员，且没有指定租户编号，则设置为当前登录人所属的租户编号
         if (identificationService.isAdmin()) {
@@ -62,6 +73,11 @@ public abstract class AbstractUserAspect {
         }
     }
 
+    /**
+     * 设置当前登录人所属的部门编号
+     *
+     * @param baseDto BaseDto对象
+     */
     private void setDeptInfo(final BaseDto baseDto) {
         if (ObjectUtils.isEmpty(baseDto.getDeptCode())) {
             baseDto.setDeptCode(identificationService.getCurrentUser().getDeptCode());

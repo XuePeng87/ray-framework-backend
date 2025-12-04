@@ -25,6 +25,7 @@ public class MyBatisAutoFillPlus implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, ColumnConst.CREATE_TIME, LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, ColumnConst.MODIFY_TIME, LocalDateTime.class, LocalDateTime.now());
     }
 
     /**
@@ -35,7 +36,7 @@ public class MyBatisAutoFillPlus implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.strictUpdateFill(metaObject, ColumnConst.CREATE_TIME, LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, ColumnConst.MODIFY_TIME, LocalDateTime.class, LocalDateTime.now());
     }
 
 }
