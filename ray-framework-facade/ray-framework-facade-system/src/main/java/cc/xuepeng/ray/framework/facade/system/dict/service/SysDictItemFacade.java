@@ -4,8 +4,6 @@ import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
 import cc.xuepeng.ray.framework.facade.system.dict.request.SysDictItemRequest;
 import cc.xuepeng.ray.framework.facade.system.dict.response.SysDictItemResponse;
 
-import java.util.List;
-
 /**
  * 系统字典项的业务处理门面接口
  *

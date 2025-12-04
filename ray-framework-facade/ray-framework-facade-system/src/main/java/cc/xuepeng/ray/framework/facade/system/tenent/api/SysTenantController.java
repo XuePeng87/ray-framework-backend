@@ -1,6 +1,5 @@
 package cc.xuepeng.ray.framework.facade.system.tenent.api;
 
-import cc.xuepeng.ray.framework.core.auth.annotation.ModifyUser;
 import cc.xuepeng.ray.framework.core.common.domain.request.RequestValidateScope;
 import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
 import cc.xuepeng.ray.framework.core.common.domain.result.DefaultResultFactory;

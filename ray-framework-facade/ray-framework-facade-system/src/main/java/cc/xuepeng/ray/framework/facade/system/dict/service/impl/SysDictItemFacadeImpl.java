@@ -11,8 +11,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * 系统字典项的业务处理门面实现类
  *

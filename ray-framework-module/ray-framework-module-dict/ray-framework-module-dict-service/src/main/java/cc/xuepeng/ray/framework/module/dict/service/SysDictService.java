@@ -3,8 +3,6 @@ package cc.xuepeng.ray.framework.module.dict.service;
 import cc.xuepeng.ray.framework.module.dict.dto.SysDictDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.util.List;
-
 /**
  * 系统字典的业务处理接口
  *
