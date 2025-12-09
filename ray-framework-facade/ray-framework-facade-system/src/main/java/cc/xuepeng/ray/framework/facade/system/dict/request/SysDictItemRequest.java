@@ -1,8 +1,8 @@
 package cc.xuepeng.ray.framework.facade.system.dict.request;
 
+import cc.xuepeng.ray.framework.core.common.domain.enums.BizStatusDto;
 import cc.xuepeng.ray.framework.core.common.domain.request.BaseRequest;
 import cc.xuepeng.ray.framework.core.common.domain.request.RequestValidateScope;
-import cc.xuepeng.ray.framework.core.mybatis.enums.BizStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -44,7 +44,7 @@ public class SysDictItemRequest extends BaseRequest implements RequestValidateSc
      * 状态：0=停用；1=启用
      */
     @NotNull(message = "状态不能为空", groups = {create.class, update.class})
-    private BizStatus status;
+    private BizStatusDto status;
 
     /**
      * 排序

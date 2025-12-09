@@ -1,7 +1,7 @@
 package cc.xuepeng.ray.framework.facade.system.role.response;
 
+import cc.xuepeng.ray.framework.core.common.domain.enums.BizStatusDto;
 import cc.xuepeng.ray.framework.core.common.domain.response.BaseResponse;
-import cc.xuepeng.ray.framework.core.mybatis.enums.BizStatus;
 import lombok.*;
 
 /**
@@ -29,7 +29,7 @@ public class SysRoleResponse extends BaseResponse {
     /**
      * 状态：0=停用；1=启用
      */
-    private BizStatus status;
+    private BizStatusDto status;
 
     /**
      * 排序

@@ -1,5 +1,6 @@
 package cc.xuepeng.ray.framework.facade.system.tenent.response;
 
+import cc.xuepeng.ray.framework.core.common.domain.enums.BizStatusDto;
 import cc.xuepeng.ray.framework.core.common.domain.response.BaseResponse;
 import lombok.*;
 
@@ -37,6 +38,10 @@ public class SysTenantResponse extends BaseResponse {
      */
     private String email;
 
+    /**
+     * 状态
+     */
+    private BizStatusDto status;
 
     /**
      * 有效期
