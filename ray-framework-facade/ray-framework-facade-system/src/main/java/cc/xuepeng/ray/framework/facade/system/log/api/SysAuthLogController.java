@@ -40,7 +40,7 @@ public class SysAuthLogController extends BaseController {
     @GetMapping("/v1/page")
     @OperateLog(module = "系统管理", func = "认证日志管理", remark = "分页查询认证日志",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<PageResponse<SysAuthLogResponse>> pageByCondition(final SysAuthLogRequest sysAuthLogRequest) {
         final PageResponse<SysAuthLogResponse> result = sysAuthLogFacade.pageByCondition(sysAuthLogRequest);
         return DefaultResultFactory.success("分页查询认证日志列表", result);

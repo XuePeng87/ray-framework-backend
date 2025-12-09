@@ -17,6 +17,12 @@ import lombok.*;
 public class SysOperateLogDetail extends BaseEntity {
 
     /**
+     * 租户编号
+     * 数据库字段：tenant_code,char(32)
+     */
+    private String tenantCode;
+
+    /**
      * 日志主键
      * 数据库字段：log_id,bigint(20)
      */

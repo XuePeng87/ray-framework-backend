@@ -90,9 +90,11 @@ public class OperateLogAspect {
             sysOperateLogDto.setTenantCode(currentUser.getTenantCode());
             sysOperateLogDto.setCreateUser(currentUser.getCode());
             sysOperateLogDto.setPhoneNumber(currentUser.getPhoneNumber());
+            sysOperateLogDto.getDetail().setTenantCode(currentUser.getTenantCode());
         } else {
             sysOperateLogDto.setTenantCode(DEFAULT_TENANT_CODE);
             sysOperateLogDto.setCreateUser(DEFAULT_CREATE_USER);
+            sysOperateLogDto.getDetail().setTenantCode(DEFAULT_TENANT_CODE);
         }
     }
 

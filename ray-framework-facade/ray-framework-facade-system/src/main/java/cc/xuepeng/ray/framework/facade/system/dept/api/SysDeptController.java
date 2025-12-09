@@ -39,7 +39,7 @@ public class SysDeptController extends BaseController {
      */
     @PostMapping("/v1")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "创建部门", action = SysOperateLogAction.CREATE)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> create(
             @Validated(RequestValidateScope.create.class)
             @RequestBody final SysDeptRequest sysDeptRequest
@@ -58,7 +58,7 @@ public class SysDeptController extends BaseController {
      */
     @PutMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "修改部门", action = SysOperateLogAction.UPDATE)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
             @Validated(RequestValidateScope.update.class) @RequestBody final SysDeptRequest sysDeptRequest
@@ -76,7 +76,7 @@ public class SysDeptController extends BaseController {
      */
     @DeleteMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "删除部门", action = SysOperateLogAction.DELETE)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<Boolean> delete(@PathVariable(value = "code") final String code) {
         return sysDeptFacade.delete(code) ?
                 DefaultResultFactory.success("删除系统部门成功", Boolean.TRUE) :
@@ -92,7 +92,7 @@ public class SysDeptController extends BaseController {
     @GetMapping("/v1/{code}")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门",
             action = SysOperateLogAction.DETAIL, ignoreResponse = true)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<SysDeptResponse> findByCode(@PathVariable(value = "code") final String code) {
         final SysDeptResponse result = sysDeptFacade.findByCode(code);
         return DefaultResultFactory.success("根据编号查询部门", result);
@@ -107,7 +107,7 @@ public class SysDeptController extends BaseController {
     @GetMapping("/v1/tree")
     @OperateLog(module = "系统管理", func = "部门管理", remark = "查询部门树",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     public Result<List<SysDeptResponse>> treeByCondition(
             @Validated(RequestValidateScope.page.class) final SysDeptRequest sysDeptRequest
     ) {
