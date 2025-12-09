@@ -1,10 +1,13 @@
 package cc.xuepeng.ray.framework.core.log.disruptor;
 
 import cc.xuepeng.ray.framework.core.log.domain.SysAuthLogDto;
+import cc.xuepeng.ray.framework.core.log.property.LogProperty;
+import cc.xuepeng.ray.framework.core.log.service.SysAuthLogService;
 import cc.xuepeng.ray.framework.core.rocketmq.client.RocketMQClient;
 import com.lmax.disruptor.EventHandler;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,7 +32,11 @@ public class SysAuthLogEventHandler implements EventHandler<SysAuthLogDto> {
     @Override
     public void onEvent(SysAuthLogDto event, long sequence, boolean endOfBatch) {
         log.info("Disruptor -> 收到消息: {}", event.toString());
-        rocketMQClient.syncSend("sys-auth-log", event);
+        if (BooleanUtils.isTrue(logProperty.getMessageQueueEnable())) {
+            rocketMQClient.syncSend("sys-auth-log", event);
+        } else {
+            sysAuthLogService.create(event);
+        }
     }
 
     /**
@@ -37,5 +44,17 @@ public class SysAuthLogEventHandler implements EventHandler<SysAuthLogDto> {
      */
     @Resource
     private RocketMQClient rocketMQClient;
+
+    /**
+     * 日志服务的自定义属性类
+     */
+    @Resource
+    private LogProperty logProperty;
+
+    /**
+     * 系统登录登出日志的服务处理接口
+     */
+    @Resource
+    private SysAuthLogService sysAuthLogService;
 
 }

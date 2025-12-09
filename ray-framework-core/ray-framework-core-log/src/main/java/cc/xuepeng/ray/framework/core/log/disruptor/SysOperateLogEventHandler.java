@@ -1,10 +1,13 @@
 package cc.xuepeng.ray.framework.core.log.disruptor;
 
 import cc.xuepeng.ray.framework.core.log.domain.SysOperateLogDto;
+import cc.xuepeng.ray.framework.core.log.property.LogProperty;
+import cc.xuepeng.ray.framework.core.log.service.SysOperateLogService;
 import cc.xuepeng.ray.framework.core.rocketmq.client.RocketMQClient;
 import com.lmax.disruptor.EventHandler;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,7 +32,11 @@ public class SysOperateLogEventHandler implements EventHandler<SysOperateLogDto>
     @Override
     public void onEvent(SysOperateLogDto event, long sequence, boolean endOfBatch) {
         log.info("Disruptor -> 收到消息: {}", event.toString());
-        rocketMQClient.syncSend("sys-operate-log", event);
+        if(BooleanUtils.isTrue(logProperty.getMessageQueueEnable())) {
+            rocketMQClient.syncSend("sys-operate-log", event);
+        } else {
+            sysOperateLogService.create(event);
+        }
     }
 
     /**
@@ -37,5 +44,17 @@ public class SysOperateLogEventHandler implements EventHandler<SysOperateLogDto>
      */
     @Resource
     private RocketMQClient rocketMQClient;
+
+    /**
+     * 日志服务的自定义属性类
+     */
+    @Resource
+    private LogProperty logProperty;
+
+    /**
+     * 系统操作日志的服务处理接口
+     */
+    @Resource
+    private SysOperateLogService sysOperateLogService;
 
 }

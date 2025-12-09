@@ -61,6 +61,8 @@ ray:
             - sys_role
             - sys_role_func_relation
             - sys_role_user_relation
+      log:
+        message-queue-enable: true
     sdk:
       verify-code:
         # 验证码缓存过期时间
