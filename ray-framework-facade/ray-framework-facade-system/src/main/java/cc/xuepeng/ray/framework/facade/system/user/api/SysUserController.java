@@ -37,7 +37,7 @@ public class SysUserController extends BaseController {
      * @return 是否创建成功
      */
     @PostMapping("/v1")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "创建用户", action = SysOperateLogAction.CREATE)
     public Result<Boolean> create(
             @Validated(RequestValidateScope.create.class) @RequestBody final SysUserRequest sysUserRequest
@@ -50,12 +50,12 @@ public class SysUserController extends BaseController {
     /**
      * 修改系统用户
      *
-     * @param code         系统用户的编码
+     * @param code           系统用户的编码
      * @param sysUserRequest 系统用户的请求对象
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "修改用户", action = SysOperateLogAction.UPDATE)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code,
@@ -72,7 +72,7 @@ public class SysUserController extends BaseController {
      * @return 是否修改成功
      */
     @PutMapping("/v1/{code}/reset-password")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "重置密码", action = SysOperateLogAction.UPDATE)
     public Result<Boolean> update(
             @PathVariable(value = "code") final String code) {
@@ -88,7 +88,7 @@ public class SysUserController extends BaseController {
      * @return 是否删除成功
      */
     @DeleteMapping("/v1/{code}")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "删除用户", action = SysOperateLogAction.DELETE)
     public Result<Boolean> delete(@PathVariable(value = "code") final String code) {
         return sysUserFacade.delete(code) ?
@@ -103,7 +103,7 @@ public class SysUserController extends BaseController {
      * @return 系统用户的响应对象
      */
     @GetMapping("/v1/{code}")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "查询用户",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<SysUserResponse> findByCode(@PathVariable(value = "code") final String code) {
@@ -118,7 +118,7 @@ public class SysUserController extends BaseController {
      * @return 系统用户的响应对象集合
      */
     @GetMapping("/v1/page")
-    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN", "ROLE_TENANT_ADMIN"}, mode = SaMode.OR)
     @OperateLog(module = "系统管理", func = "用户管理", remark = "分页查询用户",
             action = SysOperateLogAction.QUERY, ignoreResponse = true)
     public Result<PageResponse<SysUserResponse>> pageByCondition(final SysUserRequest sysUserRequest) {
