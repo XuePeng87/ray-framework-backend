@@ -17,6 +17,8 @@ import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 系统租户的API接口
  *
@@ -79,6 +81,17 @@ public class SysTenantController extends BaseController {
         return sysTenantFacade.delete(code) ?
                 DefaultResultFactory.success("删除租户成功", Boolean.TRUE) :
                 DefaultResultFactory.fail("删除租户成功", Boolean.FALSE);
+    }
+
+    @GetMapping("/v1/list")
+    @OperateLog(module = "系统管理", func = "租户管理", remark = "条件查询租户",
+            action = SysOperateLogAction.QUERY, ignoreResponse = true)
+    @SaCheckRole(value = {"ROLE_SUPER_ADMIN", "ROLE_SYSTEM_ADMIN"}, mode = SaMode.OR)
+    public Result<List<SysTenantResponse>> listByCondition(
+            @Validated(RequestValidateScope.list.class) final SysTenantRequest sysTenantRequest
+    ) {
+        final List<SysTenantResponse> result = sysTenantFacade.listByCondition(sysTenantRequest);
+        return DefaultResultFactory.success("根据条件查询系统租户", result);
     }
 
     /**

@@ -4,6 +4,8 @@ import cc.xuepeng.ray.framework.core.common.domain.response.PageResponse;
 import cc.xuepeng.ray.framework.facade.system.tenent.request.SysTenantRequest;
 import cc.xuepeng.ray.framework.facade.system.tenent.response.SysTenantResponse;
 
+import java.util.List;
+
 /**
  * 系统租户的业务处理门面接口
  *
@@ -35,6 +37,14 @@ public interface SysTenantFacade {
      * @return 是否删除成功
      */
     boolean delete(final String code);
+
+    /**
+     * 根据条件查询系统租户
+     *
+     * @param sysTenantRequest 系统租户的请求对象
+     * @return 系统租户的响应对象集合
+     */
+    List<SysTenantResponse> listByCondition(final SysTenantRequest sysTenantRequest);
 
     /**
      * 根据条件分页查询系统租户

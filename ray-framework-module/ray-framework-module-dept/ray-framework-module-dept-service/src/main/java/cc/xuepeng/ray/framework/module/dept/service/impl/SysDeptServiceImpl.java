@@ -159,6 +159,7 @@ public class SysDeptServiceImpl
         final QueryWrapper<SysDept> wrapper = QueryWrapperUtil.createQueryWrapper(sysDeptDto);
         final SysDept sysDept = sysDeptEntityConverter.dtoToEntity(sysDeptDto);
         final LambdaQueryWrapper<SysDept> lambda = wrapper.lambda();
+        lambda.eq(StringUtils.isNotBlank(sysDept.getTenantCode()), SysDept::getTenantCode, sysDept.getTenantCode());
         lambda.eq(StringUtils.isNotBlank(sysDept.getCode()), SysDept::getCode, sysDept.getCode());
         lambda.eq(ObjectUtils.isNotEmpty(sysDept.getStatus()), SysDept::getStatus, sysDept.getStatus());
         lambda.like(StringUtils.isNotBlank(sysDept.getName()), SysDept::getName, sysDept.getName());

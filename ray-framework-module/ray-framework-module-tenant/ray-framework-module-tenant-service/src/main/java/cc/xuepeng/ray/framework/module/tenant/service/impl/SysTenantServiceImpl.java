@@ -114,6 +114,19 @@ public class SysTenantServiceImpl
     }
 
     /**
+     * 根据条件查询系统租户
+     *
+     * @param sysTenantDto 系统租户的数据传输对象
+     * @return 系统租户的数据传输对象集合
+     */
+    @Override
+    public List<SysTenantDto> listByCondition(final SysTenantDto sysTenantDto) {
+        final QueryWrapper<SysTenant> wrapper = createQueryWrapper(sysTenantDto);
+        final List<SysTenant> tenants = super.list(wrapper);
+        return sysTenantEntityConverter.entityListToDtoList(tenants);
+    }
+
+    /**
      * 根据条件分页查询系统租户
      *
      * @param sysTenantDto 系统租户的数据传输对象
@@ -142,7 +155,7 @@ public class SysTenantServiceImpl
     /**
      * 判断系统租户电话号码是否存在
      *
-     * @param id    系统租户的主键
+     * @param id          系统租户的主键
      * @param phoneNumber 系统租户的电话号码
      * @return 系统租户电话号码是否存在
      */

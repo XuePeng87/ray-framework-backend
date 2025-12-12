@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * 系统租户的业务处理门面实现类
  *
@@ -19,7 +21,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SysTenantFacadeImpl implements SysTenantFacade {
 
-    /**     * 创建租户
+    /**
+     * 创建租户
      *
      * @param sysTenantRequest 系统租户的请求对象
      * @return 是否创建成功
@@ -53,6 +56,20 @@ public class SysTenantFacadeImpl implements SysTenantFacade {
     @Override
     public boolean delete(final String code) {
         return sysTenantService.delete(code);
+    }
+
+    /**
+     * 根据条件查询系统租户
+     *
+     * @param sysTenantRequest 系统租户的请求对象
+     * @return 系统租户的响应对象集合
+     */
+    @Override
+    public List<SysTenantResponse> listByCondition(final SysTenantRequest sysTenantRequest) {
+        final SysTenantDto sysTenantDto = sysTenantDtoConverter.requestToDto(sysTenantRequest);
+        final List<SysTenantDto> tenantDtos = sysTenantService.listByCondition(sysTenantDto);
+        return sysTenantDtoConverter.dtoListToResponseList(tenantDtos);
+
     }
 
     /**

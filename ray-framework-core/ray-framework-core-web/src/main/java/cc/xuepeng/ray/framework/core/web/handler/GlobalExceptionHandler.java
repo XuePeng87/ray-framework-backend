@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ConstraintViolationException.class)
     @ResponseBody
     public ResponseEntity<String> constraintViolationException(ConstraintViolationException e) {
-        log.error(e.getMessage());
+        log.error(e.getMessage(), e);
         final Result<String> result = new Result.Builder<String>(GlobalResultStatus.REQUEST_BAD)
                 .msg(e.getMessage())
                 .build();
@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
     public ResponseEntity<String> methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        log.error(e.getMessage());
+        log.error(e.getMessage(), e);
         final Result<Map<String, String>> result = new Result.Builder<Map<String, String>>(GlobalResultStatus.REQUEST_BAD)
                 .msg(PARAM_ERROR_MSG)
                 .build();
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
         final Result<Map<String, String>> result = new Result.Builder<Map<String, String>>(GlobalResultStatus.REQUEST_BAD)
                 .msg(PARAM_ERROR_MSG)
                 .build();
-        log.error(e.getMessage());
+        log.error(e.getMessage(), e);
         return new ResponseEntity<>(result.toString(), HttpStatus.BAD_REQUEST);
     }
 
@@ -95,7 +95,7 @@ public class GlobalExceptionHandler {
         final Result<String> result = new Result.Builder<String>(GlobalResultStatus.REQUEST_BAD)
                 .msg(e.getMessage())
                 .build();
-        log.error(e.getMessage());
+        log.error(e.getMessage(), e);
         return new ResponseEntity<>(result.toString(), HttpStatus.BAD_REQUEST);
     }
 

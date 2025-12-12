@@ -3,6 +3,8 @@ package cc.xuepeng.ray.framework.module.tenant.service;
 import cc.xuepeng.ray.framework.module.tenant.dto.SysTenantDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.util.List;
+
 /**
  * 系统租户的业务处理接口
  *
@@ -41,6 +43,14 @@ public interface SysTenantService {
      * @return 系统租户的数据传输对象
      */
     SysTenantDto findByCode(final String code);
+
+    /**
+     * 根据条件查询系统租户
+     *
+     * @param sysTenantDto 系统租户的数据传输对象
+     * @return 系统租户的数据传输对象集合
+     */
+    List<SysTenantDto> listByCondition(final SysTenantDto sysTenantDto);
 
     /**
      * 根据条件分页查询系统租户

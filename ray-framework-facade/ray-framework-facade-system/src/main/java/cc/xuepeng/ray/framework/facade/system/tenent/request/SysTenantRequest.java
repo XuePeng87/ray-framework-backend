@@ -27,21 +27,24 @@ public class SysTenantRequest extends BaseRequest implements RequestValidateScop
      * 名称
      */
     @NotBlank(message = "名称不能为空", groups = {create.class, update.class})
-    @Length(max = 128, message = "名称长度不能大于128个字符", groups = {create.class, update.class, regedit.class, page.class})
+    @Length(max = 128, message = "名称长度不能大于128个字符",
+            groups = {create.class, update.class, regedit.class, page.class, list.class})
     private String name;
 
     /**
      * 手机
      */
     @NotBlank(message = "电话号不能为空", groups = {create.class, update.class, regedit.class})
-    @Length(max = 32, message = "手机号长度不能大于32个字符", groups = {create.class, update.class, regedit.class, page.class})
+    @Length(max = 32, message = "手机号长度不能大于32个字符",
+            groups = {create.class, update.class, regedit.class, page.class, list.class})
     private String phoneNumber;
 
     /**
      * 邮箱
      */
     @NotBlank(message = "邮箱不能为空", groups = {create.class, update.class, regedit.class})
-    @Length(max = 128, message = "邮箱长度不能大于128个字符", groups = {create.class, update.class, regedit.class, page.class})
+    @Length(max = 128, message = "邮箱长度不能大于128个字符",
+            groups = {create.class, update.class, regedit.class, page.class, list.class})
     @Email(message = "邮箱格式不正确")
     private String email;
 
@@ -69,7 +72,8 @@ public class SysTenantRequest extends BaseRequest implements RequestValidateScop
     /**
      * 备注
      */
-    @Length(max = 256, message = "备注长度不能大于256个字符", groups = {create.class, update.class, page.class})
+    @Length(max = 256, message = "备注长度不能大于256个字符",
+            groups = {create.class, update.class, page.class, list.class})
     private String remark;
 
 }

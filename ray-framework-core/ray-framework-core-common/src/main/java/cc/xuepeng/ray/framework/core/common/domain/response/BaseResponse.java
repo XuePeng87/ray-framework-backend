@@ -22,6 +22,11 @@ public class BaseResponse implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 租户编号
+     */
+    private String tenantCode;
+
+    /**
      * 创建人
      */
     private String createUser;
